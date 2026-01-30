@@ -1,9 +1,18 @@
 import { ArrowUpRight } from "lucide-react";
 import dashboardImage from "../assets/WhatsApp Image 2025-09-18 at 17.04.57.png";
+import backgroundPattern from "../assets/bg.png";
 
 const Hero = () => {
 	return (
 		<section className="relative h-screen w-full flex items-center justify-center">
+			<div
+				className="absolute inset-0 w-screen h-screen bg-center bg-no-repeat pointer-events-none"
+				style={{
+					backgroundImage: `url(${backgroundPattern})`,
+					backgroundSize: "100% 100%",
+					filter: "saturate(1.5) contrast(1.2) brightness(0.9)",
+				}}
+			/>
 			{/* Hero Content */}
 			<div className="relative z-10 flex flex-col items-center justify-center w-full max-w-6xl px-6 text-center">
 				{/* Top Text */}
@@ -16,7 +25,10 @@ const Hero = () => {
 
 				{/* CTA Buttons */}
 				<div className="flex items-center gap-6 mb-10">
-					<button type="button" className="flex items-center bg-black text-white gap-6 pl-1.5 pr-8 py-1.5 rounded-full hover:bg-gray-800 transition-colors text-xl font-light tracking-tight">
+					<button
+						type="button"
+						className="flex items-center bg-black text-white gap-6 pl-1.5 pr-8 py-1.5 rounded-full hover:bg-gray-800 transition-colors text-xl font-light tracking-tight"
+					>
 						<div
 							className="relative border border-gray-600 rounded-full px-5 py-3 overflow-hidden"
 							style={{
@@ -25,9 +37,13 @@ const Hero = () => {
 							}}
 						>
 							<ArrowUpRight className="relative z-10 w-5 h-5" />
-						</div>Try Demo
+						</div>
+						Try Demo
 					</button>
-					<button type="button" className="bg-white text-black px-10 py-4 rounded-full hover:bg-gray-100 transition-colors text-xl font-light tracking-tight border border-gray-300">
+					<button
+						type="button"
+						className="bg-white text-black px-10 py-4 rounded-full hover:bg-gray-100 transition-colors text-xl font-light tracking-tight border border-gray-300"
+					>
 						Contact Us
 					</button>
 				</div>

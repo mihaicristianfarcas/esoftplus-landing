@@ -46,9 +46,7 @@ const HeroFooter = () => {
 					<div className="w-8 h-16 border-2 border-black rounded-full flex items-end justify-center pt-3 pb-2">
 						<Hexagon className="w-4 h-4 fill-black text-black" />
 					</div>
-					<span className="text-base text-black tracking-wider">
-						SCROLL
-					</span>
+					<span className="text-base text-black tracking-wider">SCROLL</span>
 				</div>
 			</div>
 		</footer>

@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import dashboardImage from "../assets/WhatsApp Image 2025-09-18 at 17.04.57.png";
+import dashboardImage from "../assets/hero-dashboard-preview.png";
 import backgroundPattern from "../assets/gradient-hero.png";
 
 const Hero = () => {

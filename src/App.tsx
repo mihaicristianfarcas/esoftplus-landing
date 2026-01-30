@@ -1,12 +1,9 @@
-import Centralise from "./components/CentraliseDark";
-import CustomDashboard from "./components/CustomDashboard";
-import CustomDashboardDark from "./components/CustomDashboardDark";
 import FeaturesCarousel from "./components/FeaturesCarousel";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import HeroFooter from "./components/HeroFooter";
-import TrackFeature from "./components/Centralise";
 import LearnPlatform from "./components/LearnPlatform";
+import Pricing from "./components/Pricing";
 
 function App() {
 	return (
@@ -18,6 +15,7 @@ function App() {
 				<HeroFooter />
 				<FeaturesCarousel />
 				<LearnPlatform />
+				<Pricing />
 			</div>
 		</div>
 	);

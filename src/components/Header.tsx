@@ -2,26 +2,20 @@ import { ArrowUpRight } from "lucide-react";
 
 const Header = () => {
 	return (
-		<header className="fixed top-0 left-0 right-0 z-50 bg-transparent px-5 py-5">
+		<header className="fixed top-0 left-0 right-0 z-50 bg-transparent px-6 py-6">
 			<div className="max-w-full flex items-start justify-between">
 				{/* Logo */}
 				<div className="flex items-start align-top">
-					<span className="text-2xl font-semibold text-black">
+					<span className="text-2xl font-medium tracking-tight">
 						Esoftplus
-						<span className="text-[10px] font-light text-black align-text-top">
-							®
-						</span>
+						<span className="text-[10px] font-light align-text-top">®</span>
 					</span>
 				</div>
 
-				<div className="flex flex-row items-start gap-12 ">
+				<div className="flex flex-row items-start gap-24">
 					<div className="flex flex-col items-start gap-1 mr-6">
-						<span className="text-base font-medium text-gray-400">
-							Built On
-						</span>
-						<span className="text-base font-medium text-black">
-							WME Enterprise
-						</span>
+						<span className="text-base font-light text-gray-400">Built On</span>
+						<span className="text-base font-light">WME Enterprise</span>
 					</div>
 					<nav className="flex flex-col items-start align-baseline gap-1">
 						<a

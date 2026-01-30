@@ -88,7 +88,7 @@ const FAQ = () => {
 					</div>
 
 					{/* Right Column - Contact Card */}
-					<div className="w-[35%] shrink-0 self-start sticky top-8">
+					<div className="w-[35%] shrink-0 self-start top-8">
 						<div className="flex flex-col justify-between bg-[#1a1a1a] rounded-3xl p-8 h-[450px]">
 							<div>
 								{/* Header */}

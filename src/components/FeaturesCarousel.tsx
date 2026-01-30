@@ -15,11 +15,14 @@ const FeaturesCarousel = () => {
 			</div>
 
 			{/* Carousel - left-aligned with heading, extends to right edge */}
-			<div
-				className="w-full"
-				style={{ paddingLeft: "max(0px, calc((100% - 1600px) / 2))" }}
-			>
-				<div className="flex gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide">
+			<div className="w-full overflow-y-hidden">
+				<div
+					className="flex gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide"
+					style={{
+						paddingLeft: "max(0px, calc((100% - 1600px) / 2))",
+						scrollPaddingLeft: "max(0px, calc((100% - 1600px) / 2))",
+					}}
+				>
 					<div className="flex-none snap-start">
 						<Centralise />
 					</div>
@@ -35,6 +38,14 @@ const FeaturesCarousel = () => {
 					<div className="flex-none snap-start">
 						<CustomDashboardDark />
 					</div>
+
+					{/* Spacer to allow last element to scroll to starting position */}
+					<div
+						className="flex-none"
+						style={{
+							width: "calc(100vw - min(100vw, 1600px) / 2)",
+						}}
+					/>
 				</div>
 			</div>
 

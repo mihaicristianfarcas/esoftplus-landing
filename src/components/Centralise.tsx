@@ -1,33 +1,26 @@
-import { FileText, Package, Warehouse } from "lucide-react";
+import trackNodesPng from "../assets/track-nodes.svg";
 
 const TrackFeature = () => {
-	const nodes = [
-		{
-			icon: Package,
-			label: "Total Stock",
-			value: "32",
-			color: "text-yellow-600",
-			bgColor: "bg-yellow-50",
-		},
-		{
-			icon: FileText,
-			label: "Central HUB",
-			value: "32",
-			color: "text-red-500",
-			bgColor: "bg-red-50",
-		},
-		{
-			icon: Warehouse,
-			label: "cargo warehouse",
-			value: "32",
-			color: "text-teal-600",
-			bgColor: "bg-teal-50",
-		},
-	];
-
 	return (
-		<div className="bg-gray-100 rounded-3xl p-10 h-full">
-			<div className="h-full flex flex-col justify-between">
+		<div
+			className="rounded-3xl p-10 h-full relative overflow-hidden"
+			style={{
+				backgroundColor: "#f3f4f6",
+				backgroundImage:
+					"radial-gradient(circle, #d1d5db 1px, transparent 1px)",
+				backgroundSize: "20px 20px",
+			}}
+		>
+			{/* Radial fade: dots visible in center, fade to solid gray at edges */}
+			<div
+				className="absolute inset-0 pointer-events-none"
+				style={{
+					background:
+						"radial-gradient(ellipse at 50% 50%, transparent 40%, #f3f4f6 85%)",
+				}}
+			/>
+
+			<div className="h-full flex flex-col justify-between relative z-1">
 				<p className="text-gray-400 text-sm mb-4">Centralise</p>
 
 				<h2 className="text-black font-semibold leading-tight text-2xl mb-8">
@@ -35,74 +28,11 @@ const TrackFeature = () => {
 				</h2>
 
 				<div className="relative mb-12 flex-1">
-					<svg
-						className="absolute inset-0 w-full h-full pointer-events-none"
-						style={{ zIndex: 0 }}
-					>
-						<title>Connecting lines</title>
-						<path
-							d="M 180 80 L 220 80 L 220 80 L 260 80"
-							stroke="#D1D5DB"
-							strokeWidth="2"
-							strokeDasharray="4 4"
-							fill="none"
-						/>
-						<path
-							d="M 340 120 L 340 160 L 180 160 L 180 200"
-							stroke="#D1D5DB"
-							strokeWidth="2"
-							strokeDasharray="4 4"
-							fill="none"
-						/>
-					</svg>
-
-					<div className="relative grid gap-6">
-						<div className="grid grid-cols-2 gap-6">
-							{nodes.slice(0, 2).map((node) => {
-								const IconComponent = node.icon;
-								return (
-									<div
-										key={node.label}
-										className="bg-white rounded-2xl p-6 shadow-sm"
-									>
-										<div className="flex items-center gap-3 mb-3">
-											<div className={`${node.bgColor} rounded-lg p-2`}>
-												<IconComponent className={`w-5 h-5 ${node.color}`} />
-											</div>
-											<span className="text-black font-medium">
-												{node.label}
-											</span>
-										</div>
-										<p className="text-gray-600 text-2xl font-light">
-											{node.value}
-										</p>
-									</div>
-								);
-							})}
-						</div>
-
-						<div className="grid grid-cols-2 gap-6">
-							{(() => {
-								const node = nodes[2];
-								const IconComponent = node.icon;
-								return (
-									<div className="bg-white rounded-2xl p-6 shadow-sm">
-										<div className="flex items-center gap-3 mb-3">
-											<div className={`${node.bgColor} rounded-lg p-2`}>
-												<IconComponent className={`w-5 h-5 ${node.color}`} />
-											</div>
-											<span className="text-black font-medium">
-												{node.label}
-											</span>
-										</div>
-										<p className="text-gray-600 text-2xl font-light">
-											{node.value}
-										</p>
-									</div>
-								);
-							})()}
-						</div>
-					</div>
+					<img
+						src={trackNodesPng}
+						alt="Track nodes showing Total Stock, Central HUB, and cargo warehouse"
+						className="w-full h-full object-contain object-top-left"
+					/>
 				</div>
 
 				<p className="text-gray-400 text-sm leading-relaxed max-w-2xl">

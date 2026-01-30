@@ -20,7 +20,7 @@ const CustomDashboardDark = () => {
 					/>
 				</div>
 
-				<p className="text-gray-500 text-sm leading-relaxed max-w-2xl mt-8">
+				<p className="text-gray-500 text-xl leading-relaxed max-w-xl mt-8">
 					Some text here explaining what this feature does. Preferably 2-3 rows
 					max. This is how it would look with 3 rows for now.
 				</p>

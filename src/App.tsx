@@ -5,6 +5,7 @@ import HeroFooter from "./components/HeroFooter";
 import LearnPlatform from "./components/LearnPlatform";
 import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
+import Team from "./components/Team";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<LearnPlatform />
 				<Pricing />
 				<FAQ />
+				<Team />
 			</div>
 		</div>
 	);

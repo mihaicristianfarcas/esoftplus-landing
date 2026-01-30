@@ -6,15 +6,15 @@ const Footer = () => {
 		<footer className="w-full px-4 pb-4 mt-64">
 			<div className="relative bg-black rounded-3xl overflow-hidden">
 				{/* Main content area */}
-				<div className="mx-auto w-full px-10 pb-[28vh] pt-8">
+				<div className="mx-auto w-full px-10 pb-[25vh] pt-8">
 					<div className="flex flex-row items-start justify-between">
 						{/* Left side - Heading + Email */}
-						<div className="flex flex-col gap-16 w-[40%]">
-							<div className="flex flex-col gap-4">
+						<div className="flex flex-col w-[40%]">
+							<div className="flex flex-col gap-6">
 								<h2 className="text-6xl md:text-7xl font-light leading-tight tracking-tighter text-white whitespace-nowrap">
 									Mobilize Your ERP
 								</h2>
-								<p className="text-gray-400 font-light">
+								<p className="text-gray-400 text-md font-light">
 									Unlock instant analytics and reporting for your WMEnterprise
 									data.
 									<br />
@@ -22,7 +22,7 @@ const Footer = () => {
 								</p>
 							</div>
 
-							<div className="flex flex-col gap-6 mt-24">
+							<div className="flex flex-col gap-6 mt-20">
 								{/* Try for Free Button */}
 								<button
 									type="button"

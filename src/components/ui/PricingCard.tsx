@@ -51,8 +51,8 @@ const PricingCard = ({
 
 					{/* Features */}
 					<div className="flex-1 space-y-3 mb-20">
-						{features.map((feature, index) => (
-							<div key={index} className="flex items-center gap-2">
+						{features.map((feature) => (
+							<div key={feature} className="flex items-center gap-2">
 								<Check className="w-4 h-4 text-gray-400" />
 								<span className="text-gray-400 font-light">{feature}</span>
 							</div>
@@ -87,8 +87,8 @@ const PricingCard = ({
 
 				{/* Features */}
 				<div className="flex-1 space-y-3 mb-8">
-					{features.map((feature, index) => (
-						<div key={index} className="flex items-center gap-2">
+					{features.map((feature) => (
+						<div key={feature} className="flex items-center gap-2">
 							<Check className="w-4 h-4 text-gray-400 font-light" />
 							<span className="text-gray-400 font-light">{feature}</span>
 						</div>

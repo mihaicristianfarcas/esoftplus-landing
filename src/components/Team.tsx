@@ -1,87 +1,7 @@
-import andresImg from "../assets/team/andres.png";
-import davidGImg from "../assets/team/david-g.png";
-import faviuImg from "../assets/team/faviu.png";
-import fonsImg from "../assets/team/fons.png";
-import jayImg from "../assets/team/jay.png";
-import robImg from "../assets/team/rob.png";
-import saraImg from "../assets/team/sara.png";
-import steveImg from "../assets/team/steve.png";
 import gradientLeft from "../assets/gradient-left.png";
 import gradientRight from "../assets/gradient-right.png";
-
-type TeamMember = {
-	name: string;
-	role: string;
-	image: string;
-} | null;
-
-type GridCell = {
-	id: string;
-	member: TeamMember;
-};
-
-// 3 rows x 4 columns grid layout matching the Figma design
-const grid: GridCell[] = [
-	{
-		id: "faviu",
-		member: { name: "Faviu", role: "Founder EsoftPlus", image: faviuImg },
-	},
-	{ id: "empty-1", member: null },
-	{
-		id: "david-g",
-		member: { name: "David G.", role: "Lead Engineer", image: davidGImg },
-	},
-	{ id: "empty-2", member: null },
-
-	{ id: "rob", member: { name: "Rob", role: "Lead Engineer", image: robImg } },
-	{ id: "sara", member: { name: "Sara", role: "Editorial", image: saraImg } },
-	{ id: "empty-3", member: null },
-	{
-		id: "fons",
-		member: { name: "Fons", role: "Founder Officer", image: fonsImg },
-	},
-
-	{
-		id: "steve",
-		member: { name: "Steve", role: "Founder EsoftPlus", image: steveImg },
-	},
-	{ id: "empty-4", member: null },
-	{
-		id: "andres",
-		member: { name: "Andres", role: "Chief Staff", image: andresImg },
-	},
-	{ id: "jay", member: { name: "Jay", role: "Lead Engineer", image: jayImg } },
-];
-
-const EmptyCell = () => (
-	<div
-		className="w-full h-full"
-		style={{
-			backgroundImage:
-				"repeating-linear-gradient(135deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)",
-		}}
-	/>
-);
-
-const MemberCell = ({
-	member,
-}: {
-	member: { name: string; role: string; image: string };
-}) => (
-	<div className="w-full h-full flex items-center justify-center">
-		<div className="flex flex-col items-start">
-			<img
-				src={member.image}
-				alt={member.name}
-				className="w-40 h-40 object-cover"
-			/>
-			<h3 className="text-2xl font-medium text-black leading-tight mt-4">
-				{member.name}
-			</h3>
-			<p className="text-base font-extralight text-gray-400">{member.role}</p>
-		</div>
-	</div>
-);
+import { teamGrid } from "../data/team";
+import TeamMemberCard from "./ui/TeamMemberCard";
 
 const Team = () => {
 	return (
@@ -126,13 +46,9 @@ const Team = () => {
 			<div className="max-w-7xl mx-auto w-full px-8">
 				{/* Team Grid — 4 cols x 3 rows with dashed borders */}
 				<div className="grid grid-cols-4 border-l border-r border-dashed border-gray-300 aspect-32/21">
-					{grid.map((cell) => (
+					{teamGrid.map((cell) => (
 						<div key={cell.id} className="border border-dashed border-gray-300">
-							{cell.member ? (
-								<MemberCell member={cell.member} />
-							) : (
-								<EmptyCell />
-							)}
+							<TeamMemberCard member={cell.member} />
 						</div>
 					))}
 				</div>

@@ -1,16 +1,21 @@
-import Centralise from "./CentraliseDark";
-import CustomDashboard from "./CustomDashboard";
-import CustomDashboardDark from "./CustomDashboardDark";
-import TrackFeature from "./Centralise";
+import DashboardPreviewCard from "./sections/DashboardPreviewCard";
+import FeatureTagCard from "./sections/FeatureTagCard";
+import TrackingCard from "./sections/TrackingCard";
 
 const FeaturesCarousel = () => {
+	// Feature data for FeatureTagCard
+	const features = [
+		["Dashboards", "Tracking", "Bank Syncing", "Sales Count", "Dashboards"],
+		["Tracking", "Bank Syncing", "Partners Tracking", "& More"],
+	];
+
 	return (
 		<section className="relative w-full min-h-screen bg-white flex flex-col justify-center">
 			{/* Header - constrained width */}
 			<div className="max-w-400 mx-auto w-full">
-				<h2 className="text-6xl md:text-7xl font-light leading-tight tracking-tighter mb-6">
+				<h2 className="section-title mb-6">
 					Everything you <br />
-					need, <span className="text-gray-300">all in one place.</span>
+					need, <span className="section-subtitle">all in one place.</span>
 				</h2>
 			</div>
 
@@ -24,19 +29,24 @@ const FeaturesCarousel = () => {
 					}}
 				>
 					<div className="flex-none snap-start">
-						<Centralise />
+						<FeatureTagCard
+							variant="dark"
+							title="Everything you need, all in one place."
+							subtitle="Centralise"
+							features={features}
+						/>
 					</div>
 
 					<div className="flex-none snap-start">
-						<TrackFeature />
+						<TrackingCard />
 					</div>
 
 					<div className="flex-none snap-start">
-						<CustomDashboard />
+						<DashboardPreviewCard variant="light" />
 					</div>
 
 					<div className="flex-none snap-start">
-						<CustomDashboardDark />
+						<DashboardPreviewCard variant="dark" />
 					</div>
 
 					{/* Spacer to allow last element to scroll to starting position */}

@@ -1,57 +1,11 @@
-import { ArrowRight } from "lucide-react";
-import SendIcon from "../assets/send-paper-plane.svg";
-
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-
-const faqItems = [
-	{
-		id: "who-am-i",
-		question: "Who am I?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure.",
-	},
-	{
-		id: "what-does-world-need",
-		question: "What does the world need?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-	},
-	{
-		id: "how-create-value-1",
-		question: "How can I create value?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-	},
-	{
-		id: "what-tools-1",
-		question: "What tools do I need?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-	},
-	{
-		id: "sustain-vision",
-		question: "How do I sustain my vision?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-	},
-	{
-		id: "how-create-value-2",
-		question: "How can I create value?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-	},
-	{
-		id: "what-tools-2",
-		question: "What tools do I need?",
-		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-	},
-];
+import ContactCard from "@/components/ui/ContactCard";
+import { faqItems } from "../data/faq";
 
 const FAQ = () => {
 	return (
@@ -89,47 +43,7 @@ const FAQ = () => {
 
 					{/* Right Column - Contact Card */}
 					<div className="w-[35%] shrink-0 self-start top-8">
-						<div className="flex flex-col justify-between bg-[#1a1a1a] rounded-3xl p-8 h-[450px]">
-							<div>
-								{/* Header */}
-								<h3 className="text-white text-3xl font-light mb-2">
-									Need Clarification?
-								</h3>
-								<p className="text-gray-400 font-extralight text-sm">
-									Book a call or message us at any time.
-								</p>
-							</div>
-							<div>
-								{/* Book a Call Button */}
-								<button
-									type="button"
-									className="w-full bg-white text-black py-3 pl-6 pr-4 rounded-full flex items-center justify-between hover:bg-gray-100 transition-all group mb-6"
-								>
-									<span className="font-medium">Book a call</span>
-									<div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-										<ArrowRight className="w-4 h-4 text-white" />
-									</div>
-								</button>
-								{/* Email Option */}
-								<div className="flex items-center justify-between w-full text-white pr-4">
-									<div className="flex items-center gap-3 text-white">
-										<img src={SendIcon} alt="" className="w-7 h-7 shrink-0" />
-										<div>
-											<p className="text-sm mb-0.5">Or send an email.</p>
-											<a
-												href="mailto:support@esoftplus.com"
-												className="text-gray-400 hover:text-gray-700 transition-colors"
-											>
-												support@esoftplus.com
-											</a>
-										</div>
-									</div>
-									<div className="w-8 h-8 bg-white rounded-full flex items-center justify-center ml-auto shrink-0">
-										<ArrowRight className="w-4 h-4 text-black" />
-									</div>
-								</div>
-							</div>
-						</div>
+						<ContactCard />
 					</div>
 				</div>
 			</div>

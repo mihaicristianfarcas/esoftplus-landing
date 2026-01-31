@@ -103,3 +103,145 @@ body {
 .accordion-content[data-state="closed"] {
 	animation: accordion-up 0.2s ease-out;
 }
+
+/* ===== CUSTOM COMPONENT CLASSES ===== */
+/* These classes ensure pixel-perfect consistency across sections */
+
+/* SECTION LAYOUTS */
+.section-title {
+	font-size: 3.75rem;
+	font-weight: 300;
+	line-height: 1.2;
+	letter-spacing: -0.025em;
+}
+
+@media (min-width: 768px) {
+	.section-title {
+		font-size: 4.5rem;
+	}
+}
+
+.hero-title {
+	font-size: 4.5rem;
+	font-weight: 600;
+	letter-spacing: -0.025em;
+}
+
+/* CARD TITLES */
+.card-title-lg {
+	font-size: 1.875rem;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+.card-title-md {
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+/* FEATURE CARDS */
+.feature-card {
+	border-radius: 1.5rem;
+	padding: 2.5rem;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.feature-card-compact {
+	border-radius: 1.5rem;
+	padding: 2rem;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+/* ICON CIRCLES */
+.icon-circle {
+	width: 2rem;
+	height: 2rem;
+	background-color: #000;
+	border-radius: 9999px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon-circle-white {
+	width: 2rem;
+	height: 2rem;
+	background-color: #fff;
+	border-radius: 9999px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon-circle-md {
+	width: 2.25rem;
+	height: 2.25rem;
+	background-color: #000;
+	border-radius: 9999px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* FEATURE BADGES */
+.feature-badge {
+	border-radius: 9999px;
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	background-color: #fff;
+	color: #000;
+}
+
+.feature-badge-muted {
+	border-radius: 9999px;
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	background-color: #1a1a1a;
+	color: #9ca3af;
+	border: 1px solid #9ca3af;
+}
+
+/* BUTTONS */
+.btn-full-width {
+	width: 100%;
+	background-color: #fff;
+	color: #000;
+	border-radius: 9999px;
+	padding: 0.5rem 1.25rem 0.5rem 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	transition-property: color, background-color, border-color;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+}
+
+.btn-full-width:hover {
+	background-color: #f3f4f6;
+}
+
+/* FEATURE LISTS */
+.feature-list {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.feature-list-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.feature-list-text {
+	color: #9ca3af;
+	font-weight: 300;
+}

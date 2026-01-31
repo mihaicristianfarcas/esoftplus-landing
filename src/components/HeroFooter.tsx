@@ -1,23 +1,8 @@
 import { Hexagon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useScrollOpacity } from "../hooks/useScrollOpacity";
 
 const HeroFooter = () => {
-	const [opacity, setOpacity] = useState(1);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const scrollPosition = window.scrollY;
-			const windowHeight = window.innerHeight;
-
-			// Calculate opacity: fade out as we scroll down
-			// Starts fading at 0, fully transparent at window height
-			const newOpacity = Math.max(0, 1 - scrollPosition / windowHeight);
-			setOpacity(newOpacity);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	const opacity = useScrollOpacity();
 
 	return (
 		<footer

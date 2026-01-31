@@ -9,11 +9,6 @@ interface FeatureTagCardProps {
 	className?: string;
 }
 
-/**
- * Feature tag card component showing feature badges
- * Merged from: CentraliseDark.tsx
- * React best practice: rerender-dependencies - Use primitive variant prop
- */
 const FeatureTagCard = ({
 	variant = "dark",
 	title,
@@ -26,11 +21,13 @@ const FeatureTagCard = ({
 
 	return (
 		<div
-			className={`feature-card-compact ${isDark ? "bg-[#1A1A1A]" : "bg-white"} ${className}`}
+			className={`feature-card-compact w-full ${isDark ? "bg-[#1A1A1A]" : "bg-white"} ${className}`}
 		>
 			<div className="h-full flex flex-col justify-between">
 				<div className="flex flex-col justify-start gap-4">
-					<p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+					<p
+						className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
+					>
 						{subtitle}
 					</p>
 
@@ -62,7 +59,9 @@ const FeatureTagCard = ({
 				<button type="button" className="btn-full-width">
 					<span className="text-lg font-medium">{buttonText}</span>
 					<div className={isDark ? "icon-circle-white" : "icon-circle"}>
-						<ArrowRight className={`w-5 h-5 ${isDark ? "text-black" : "text-white"}`} />
+						<ArrowRight
+							className={`w-5 h-5 ${isDark ? "text-black" : "text-white"}`}
+						/>
 					</div>
 				</button>
 			</div>

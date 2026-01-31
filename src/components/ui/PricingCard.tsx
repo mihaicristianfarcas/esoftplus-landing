@@ -12,11 +12,6 @@ interface PricingCardProps {
 	className?: string;
 }
 
-/**
- * Reusable pricing card component
- * Used in: Pricing section
- * React best practice: rerender-simple-expression-in-memo - Don't memo simple feature lists
- */
 const PricingCard = ({
 	title,
 	price,
@@ -79,7 +74,9 @@ const PricingCard = ({
 
 	// Basic and Enterprise Plans
 	return (
-		<div className={`border border-gray-100 rounded-3xl p-5 w-100 ${className}`}>
+		<div
+			className={`border border-gray-100 rounded-3xl p-5 w-100 ${className}`}
+		>
 			{/* Inner Card */}
 			<div className="bg-gray-50 rounded-2xl p-4 flex flex-col h-full">
 				<div className="mb-8">

@@ -4,14 +4,9 @@ import {
 	getRadialGradientOverlay,
 } from "../../lib/backgroundPatterns";
 
-/**
- * Tracking feature card with dotted background
- * Renamed from: Centralise.tsx
- * React best practice: js-cache-property-access - Use cached background patterns
- */
 const TrackingCard = () => {
 	return (
-		<div className="feature-card" style={getDottedBackground()}>
+		<div className="feature-card w-full" style={getDottedBackground()}>
 			{/* Radial fade: dots visible in center, fade to solid gray at edges */}
 			<div
 				className="absolute inset-0 pointer-events-none"

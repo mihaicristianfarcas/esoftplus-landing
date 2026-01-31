@@ -41,6 +41,5 @@ export const getDiagonalStripes = (): CSSProperties => ({
 		"repeating-linear-gradient(135deg, transparent, transparent 3px, rgba(255,255,255, 0.3) 3px, rgba(255,255,255,0.1) 4px)",
 });
 
-// Cache commonly used patterns to avoid recreation (React best practice: js-cache-property-access)
 export const DOTTED_BACKGROUND_LIGHT = getDottedBackground();
 export const GRADIENT_OVERLAY_LIGHT = getRadialGradientOverlay();

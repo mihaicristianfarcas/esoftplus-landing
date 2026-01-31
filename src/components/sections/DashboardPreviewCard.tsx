@@ -11,11 +11,6 @@ interface DashboardPreviewCardProps {
 	className?: string;
 }
 
-/**
- * Dashboard preview card component
- * Merged from: CustomDashboard.tsx + CustomDashboardDark.tsx
- * React best practice: rerender-dependencies - Use primitive variant prop
- */
 const DashboardPreviewCard = ({
 	variant = "light",
 	className = "",
@@ -25,7 +20,10 @@ const DashboardPreviewCard = ({
 	if (isLight) {
 		// Light variant with dotted background and stats
 		return (
-			<div className={`feature-card ${className}`} style={getDottedBackground()}>
+			<div
+				className={`feature-card w-full ${className}`}
+				style={getDottedBackground()}
+			>
 				{/* Radial fade: dots visible in center, fade to solid gray at edges */}
 				<div
 					className="absolute inset-0 pointer-events-none"

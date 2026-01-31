@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 /**
  * Custom hook to calculate opacity based on scroll position
- * Applies React best practice: client-passive-event-listeners
  *
  * @param fadeDistance - Distance in pixels over which to fade (default: window height)
  * @returns opacity value between 0 and 1
@@ -22,7 +21,6 @@ export const useScrollOpacity = (fadeDistance?: number) => {
 		};
 
 		// Use passive event listener for better scroll performance
-		// React best practice: client-passive-event-listeners
 		window.addEventListener("scroll", handleScroll, { passive: true });
 
 		// Initial calculation

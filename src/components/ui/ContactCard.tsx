@@ -10,11 +10,6 @@ interface ContactCardProps {
 	className?: string;
 }
 
-/**
- * Reusable contact card component
- * Used in: FAQ, Footer
- * React best practice: rerender-memo - Memoized as it's used in multiple locations
- */
 const ContactCard = memo(
 	({
 		title = "Need Clarification?",
@@ -64,7 +59,7 @@ const ContactCard = memo(
 				</div>
 			</div>
 		);
-	}
+	},
 );
 
 ContactCard.displayName = "ContactCard";

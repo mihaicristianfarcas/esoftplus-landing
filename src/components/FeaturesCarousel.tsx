@@ -21,23 +21,26 @@ const FeaturesCarousel = () => {
 		const handleScroll = () => {
 			const rect = container.getBoundingClientRect();
 			const containerHeight = container.offsetHeight;
-			
+
 			// Start effect when section reaches top of viewport
 			if (rect.top <= 0 && rect.bottom > window.innerHeight) {
 				// Calculate scroll progress through the section
-				const scrollProgress = Math.abs(rect.top) / (containerHeight - window.innerHeight);
-				
+				const scrollProgress =
+					Math.abs(rect.top) / (containerHeight - window.innerHeight);
+
 				// Get all card elements (excluding the spacer)
-				const cards = scrollContainer.querySelectorAll('.flex-none:not(:last-child)');
+				const cards = scrollContainer.querySelectorAll(
+					".flex-none:not(:last-child)",
+				);
 				const firstCard = cards[0] as HTMLElement;
 				const lastCard = cards[cards.length - 1] as HTMLElement;
-				
+
 				if (firstCard && lastCard) {
 					// The first card's offsetLeft is where it starts (should be 0 since padding is on container)
 					// The last card should scroll to align its left edge with where the first card started
 					// Max scroll = distance from first card to last card
 					const maxScroll = lastCard.offsetLeft - firstCard.offsetLeft;
-					
+
 					// Apply horizontal scroll based on vertical scroll progress
 					const targetScroll = scrollProgress * maxScroll;
 					scrollContainer.scrollLeft = targetScroll;
@@ -45,32 +48,30 @@ const FeaturesCarousel = () => {
 			}
 		};
 
-		window.addEventListener('scroll', handleScroll, { passive: true });
+		window.addEventListener("scroll", handleScroll, { passive: true });
 		handleScroll(); // Initial check
 
 		return () => {
-			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
 
 	return (
-		<div 
+		<div
 			ref={containerRef}
 			style={{
 				// Height determines how long the scroll-jacking lasts
 				// 4 cards = 400vh to give smooth scrolling through each card
-				height: '400vh',
-				position: 'relative'
+				height: "400vh",
+				position: "relative",
 			}}
 		>
-			<section 
-				className="sticky top-0 w-full h-screen bg-white flex flex-col justify-center"
-			>
+			<section className="sticky top-0 w-full h-screen bg-white flex flex-col justify-center overflow-hidden">
 				{/* Header - constrained width */}
-				<div className="max-w-400 mx-auto w-full">
-					<h2 className="section-title mb-6">
-						Everything you <br />
-						need, <span className="section-subtitle">all in one place.</span>
+				<div className="max-w-[1280px] mx-auto w-full px-6 lg:px-10">
+					<h2 className="section-title mb-6 lg:mb-12">
+						Everything you <br className="hidden sm:block" />
+						need, <span className="text-gray-400">all in one place.</span>
 					</h2>
 				</div>
 
@@ -78,12 +79,13 @@ const FeaturesCarousel = () => {
 				<div className="w-full overflow-hidden">
 					<div
 						ref={scrollContainerRef}
-						className="flex gap-6 overflow-x-hidden scrollbar-hide"
+						className="flex gap-4 lg:gap-6 overflow-x-hidden scrollbar-hide"
 						style={{
-							paddingLeft: "max(0px, calc((100% - 1600px) / 2))",
+							paddingLeft: "max(1.5rem, calc((100% - 1280px) / 2 + 1.5rem))",
+							paddingRight: "1.5rem",
 						}}
 					>
-						<div className="flex-none">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
 							<FeatureTagCard
 								variant="dark"
 								title="Everything you need, all in one place."
@@ -91,24 +93,20 @@ const FeaturesCarousel = () => {
 								features={features}
 							/>
 						</div>
-
-						<div className="flex-none">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
 							<TrackingCard />
 						</div>
-
-						<div className="flex-none">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
 							<DashboardPreviewCard variant="light" />
 						</div>
-
-						<div className="flex-none">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
 							<DashboardPreviewCard variant="dark" />
-						</div>
-
+						</div>{" "}
 						{/* Spacer to allow last element to scroll to starting position */}
 						<div
 							className="flex-none"
 							style={{
-								width: "calc(100vw - min(100vw, 1600px) / 2)",
+								width: "calc(100vw - min(100vw, 1280px) / 2)",
 							}}
 						/>
 					</div>

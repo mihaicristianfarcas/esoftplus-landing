@@ -5,88 +5,116 @@ import testimonialDots from "../assets/testimonial-dots.svg";
 
 const LearnPlatform = () => {
 	return (
-		<section className="relative w-full min-h-screen bg-white flex flex-col justify-center overflow-hidden">
-			<div className="max-w-400 mx-auto w-full">
-				<div className="flex flex-row items-end gap-[5vw]">
-					{/* First item: Title+Testimonial row & Video Preview stacked */}
-					<div className="flex flex-col gap-6 flex-1 min-w-0">
-						{/* Top row: Title + Video side by side */}
-						<div className="flex flex-row items-stretch gap-[5vw]">
-							{/* Left Column - Text Content */}
-							<div className="flex flex-col justify-between w-[40%] gap-[15vh] shrink-0">
-								<h2 className="text-6xl md:text-7xl font-light leading-tight tracking-tighter whitespace-nowrap">
-									Learn How To Use <br />
-									<span className="text-gray-300">The Platform.</span>
-								</h2>
+		<section className="relative w-full min-h-screen bg-white flex flex-col justify-center overflow-hidden py-12 lg:py-24">
+			<div className="max-w-[1280px] mx-auto w-full px-6 lg:px-10">
+				<div className="flex flex-col lg:gap-16">
+					{/* Header + Video Row */}
+					<div className="flex flex-col lg:flex-row items-stretch gap-12">
+						{/* Left Column - Text Content */}
+						<div className="flex flex-col justify-between w-full lg:w-[45%] shrink-0 gap-12 lg:gap-[15vh]">
+							<h2 className="section-title">
+								Learn How To Use <br />
+								<span className="text-gray-300">The Platform.</span>
+							</h2>
 
-								{/* Testimonial */}
-								<div className="flex flex-row items-stretch gap-4">
-									<img
-										src={testimonialDots}
-										alt=""
-										className="h-full self-stretch"
-									/>
-									<div>
-										<p className="text-lg leading-relaxed mb-6">
-											"Using this app transformed the way we track our
-											business—setup was effortless and the reports are spot-on.
-											We finally have the insights we need, right at our
-											fingertips!"
-										</p>
+							{/* Testimonial - Desktop (hidden on mobile, shown below video) */}
+							<div className="hidden lg:flex flex-row items-stretch gap-6">
+								<img
+									src={testimonialDots}
+									alt=""
+									className="h-full self-stretch"
+								/>
+								<div>
+									<p className="text-lg lg:text-xl leading-relaxed mb-6">
+										"Using this app transformed the way we track our
+										business—setup was effortless and the reports are spot-on.
+										We finally have the insights we need, right at our
+										fingertips!"
+									</p>
 
-										{/* Author */}
-										<div className="flex items-center gap-3">
-											<div className="w-12 h-12 rounded-full bg-gray-200" />
-											<div>
-												<p className="text-black font-medium">Victor D.</p>
-												<p className="text-gray-400 text-sm">
-													Founder Baseline
-												</p>
-											</div>
+									{/* Author */}
+									<div className="flex items-center gap-3">
+										<div className="w-12 h-12 rounded-full bg-gray-100" />
+										<div>
+											<p className="text-black font-semibold">Victor D.</p>
+											<p className="text-gray-400 text-sm">Founder Baseline</p>
 										</div>
-									</div>
-								</div>
-							</div>
-
-							{/* Right Column - Video Card */}
-							<div
-								className="relative rounded-3xl p-8 flex-1 min-w-0 flex items-center justify-center"
-								style={{
-									background: `url(${videoPreviewBackground})`,
-									backgroundSize: "cover",
-									backgroundPosition: "center",
-								}}
-							>
-								{/* Video Preview Container */}
-								<div className="relative rounded-2xl overflow-hidden w-[90%] mx-auto">
-									<img
-										src={videoPreview}
-										alt="Dashboard Video Preview"
-										className="w-full h-full object-contain"
-									/>
-
-									{/* Watch Video Button Overlay */}
-									<div className="absolute inset-0 flex items-center justify-center">
-										<button
-											type="button"
-											className="bg-white/95 backdrop-blur-sm text-black px-6 py-3 rounded-full flex items-center gap-3 hover:bg-white transition-all shadow-lg"
-										>
-											<Play className="w-5 h-5 text-black fill-black" />
-											<span className="font-medium">Watch Video</span>
-										</button>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						{/* Description Text - directly below video preview */}
-						<p className="text-xl leading-relaxed mt-2 ml-[calc(40%+5vw)]">
-							Transform your WMEnterprise data into beautiful, interactive
-							dashboards—no technical setup needed. Dive into ready-made
-							reports, create custom analytics on the fly, and track your
-							business from anywhere, all in a simple, mobile-friendly
-							interface.
-						</p>
+						{/* Right Column - Video Card */}
+						<div
+							className="relative rounded-[2.5rem] p-6 lg:p-12 flex-1 flex items-center justify-center min-h-[240px] lg:min-h-0"
+							style={{
+								background: `url(${videoPreviewBackground})`,
+								backgroundSize: "cover",
+								backgroundPosition: "center",
+							}}
+						>
+							{/* Video Preview Container */}
+							<div className="relative rounded-2xl overflow-hidden w-full mx-auto shadow-2xl">
+								<img
+									src={videoPreview}
+									alt="Dashboard Video Preview"
+									className="w-full h-full object-contain"
+								/>
+
+								{/* Watch Video Button Overlay */}
+								<div className="absolute inset-0 flex items-center justify-center">
+									<button
+										type="button"
+										className="bg-white/95 backdrop-blur-md text-black px-6 lg:px-8 py-3 lg:py-4 rounded-full flex items-center gap-3 hover:bg-white transition-all shadow-xl hover:scale-105"
+									>
+										<Play className="w-5 h-5 text-black fill-black" />
+										<span className="font-semibold text-sm lg:text-base">
+											Watch Video
+										</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					{/* Description + Mobile Testimonial Row */}
+					<div className="flex flex-col lg:flex-row gap-12 mt-12 lg:mt-0">
+						{/* Spacer for desktop alignment */}
+						<div className="hidden lg:block lg:w-[45%] shrink-0" />
+
+						<div className="flex flex-col gap-12">
+							<p className="text-lg lg:text-xl leading-relaxed text-gray-600">
+								Transform your WMEnterprise data into beautiful, interactive
+								dashboards—no technical setup needed. Dive into ready-made
+								reports, create custom analytics on the fly, and track your
+								business from anywhere, all in a simple, mobile-friendly
+								interface.
+							</p>
+
+							{/* Testimonial - Mobile (hidden on desktop) */}
+							<div className="flex lg:hidden flex-row items-stretch gap-4">
+								<img
+									src={testimonialDots}
+									alt=""
+									className="h-auto w-4 self-stretch"
+								/>
+								<div>
+									<p className="text-base leading-relaxed mb-4">
+										"Using this app transformed the way we track our
+										business—setup was effortless and the reports are spot-on."
+									</p>
+									<div className="flex items-center gap-3">
+										<div className="w-10 h-10 rounded-full bg-gray-100" />
+										<div>
+											<p className="text-black font-semibold text-sm">
+												Victor D.
+											</p>
+											<p className="text-gray-400 text-xs">Founder Baseline</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

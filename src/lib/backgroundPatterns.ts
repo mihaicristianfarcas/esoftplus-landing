@@ -13,7 +13,7 @@ export const getDottedBackground = (
 	backgroundColor = "#f3f4f6",
 	dotColor = "#d1d5db",
 	dotSize = "1px",
-	spacing = "20px"
+	spacing = "20px",
 ): CSSProperties => ({
 	backgroundColor,
 	backgroundImage: `radial-gradient(circle, ${dotColor} ${dotSize}, transparent ${dotSize})`,
@@ -27,7 +27,7 @@ export const getDottedBackground = (
 export const getRadialGradientOverlay = (
 	color = "#f3f4f6",
 	centerTransparency = "40%",
-	edgeTransparency = "85%"
+	edgeTransparency = "85%",
 ): CSSProperties => ({
 	background: `radial-gradient(ellipse at 50% 50%, transparent ${centerTransparency}, ${color} ${edgeTransparency})`,
 });

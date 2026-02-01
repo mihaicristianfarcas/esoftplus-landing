@@ -25,17 +25,17 @@ const PricingCard = ({
 		// Pro Plan - with blue background image and flame
 		return (
 			<div
-				className={`rounded-3xl p-5 w-100 ${className}`}
+				className={`rounded-3xl p-4 lg:p-5 w-full ${className}`}
 				style={{
 					background: `url(${pricingBlueCardBackground})`,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
-					boxShadow: "0px 60px 60px rgba(0, 0, 0, 0.3)",
+					boxShadow: "0px 60px 60px rgba(0, 0, 0, 0.2)",
 				}}
 			>
 				{/* Inner Card */}
-				<div className="relative bg-black rounded-2xl p-4 flex flex-col h-full overflow-hidden">
+				<div className="relative bg-black rounded-2xl p-6 flex flex-col h-full overflow-hidden">
 					{/* Blue Flame Background */}
 					<img
 						src={pricingBlueFlame}
@@ -45,16 +45,22 @@ const PricingCard = ({
 
 					<div className="relative z-10 mb-8">
 						<p className="text-gray-400 text-sm mb-4">{title}</p>
-						<p className="text-5xl font-light text-white mb-6">{price}</p>
-						<p className="text-gray-300 leading-relaxed">{description}</p>
+						<p className="text-4xl lg:text-5xl font-light text-white mb-6">
+							{price}
+						</p>
+						<p className="text-gray-300 text-sm lg:text-base leading-relaxed">
+							{description}
+						</p>
 					</div>
 
 					{/* Features */}
-					<div className="flex-1 space-y-3 mb-20">
+					<div className="flex-1 space-y-3 mb-12 lg:mb-20">
 						{features.map((feature) => (
 							<div key={feature} className="flex items-center gap-2">
 								<Check className="w-4 h-4 text-gray-400" />
-								<span className="text-gray-400 font-light">{feature}</span>
+								<span className="text-gray-400 text-sm lg:text-base font-light">
+									{feature}
+								</span>
 							</div>
 						))}
 					</div>
@@ -62,10 +68,10 @@ const PricingCard = ({
 					{/* Subscribe Button */}
 					<button
 						type="button"
-						className="relative z-10 w-full bg-black text-white py-5 px-6 rounded-md flex items-center justify-center gap-2 hover:bg-gray-800 transition-all group"
+						className="relative z-10 w-full bg-white text-black py-4 px-6 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group"
 					>
-						<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 						<span className="font-medium">{buttonText}</span>
+						<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 					</button>
 				</div>
 			</div>
@@ -75,14 +81,16 @@ const PricingCard = ({
 	// Basic and Enterprise Plans
 	return (
 		<div
-			className={`border border-gray-100 rounded-3xl p-5 w-100 ${className}`}
+			className={`border border-gray-100 rounded-3xl p-4 lg:p-5 w-full ${className}`}
 		>
 			{/* Inner Card */}
-			<div className="bg-gray-50 rounded-2xl p-4 flex flex-col h-full">
+			<div className="bg-gray-50 rounded-2xl p-6 flex flex-col h-full">
 				<div className="mb-8">
 					<p className="text-gray-400 text-sm mb-4">{title}</p>
-					<p className="text-5xl font-light mb-6">{price}</p>
-					<p className="text-gray-600 leading-relaxed">{description}</p>
+					<p className="text-4xl lg:text-5xl font-light mb-6">{price}</p>
+					<p className="text-gray-600 text-sm lg:text-base leading-relaxed">
+						{description}
+					</p>
 				</div>
 
 				{/* Features */}
@@ -90,7 +98,9 @@ const PricingCard = ({
 					{features.map((feature) => (
 						<div key={feature} className="flex items-center gap-2">
 							<Check className="w-4 h-4 text-gray-400 font-light" />
-							<span className="text-gray-400 font-light">{feature}</span>
+							<span className="text-gray-400 text-sm lg:text-base font-light">
+								{feature}
+							</span>
 						</div>
 					))}
 				</div>
@@ -98,7 +108,7 @@ const PricingCard = ({
 				{/* Subscribe Button */}
 				<button
 					type="button"
-					className="w-full bg-white border border-gray-100 text-black py-3 pl-5 pr-3 rounded-md flex items-center justify-between hover:bg-gray-100 transition-all group"
+					className="w-full bg-white border border-gray-100 text-black py-3 pl-5 pr-3 rounded-xl flex items-center justify-between hover:bg-gray-100 transition-all group"
 				>
 					<span className="font-medium">{buttonText}</span>
 					<div className="icon-circle-md">

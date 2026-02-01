@@ -33,11 +33,11 @@ const DashboardPreviewCard = ({
 				<div className="h-full flex flex-col justify-between relative z-10">
 					<p className="text-gray-400 text-sm mb-4">Customise</p>
 
-					<h2 className="text-black font-semibold leading-tight text-2xl mb-8 max-w-2xl">
+					<h2 className="text-black font-semibold leading-tight text-xl lg:text-2xl mb-6 lg:mb-8 max-w-2xl">
 						Custom Dashboards, tailored for your requirements.
 					</h2>
 
-					<div className="relative flex-1 flex flex-col mb-8">
+					<div className="relative flex-1 flex flex-col mb-6 lg:mb-8">
 						<button
 							type="button"
 							className="absolute top-0 right-0 text-gray-400 hover:text-gray-600 transition-colors z-10"
@@ -48,12 +48,14 @@ const DashboardPreviewCard = ({
 
 						<div className="mb-4">
 							<div className="flex items-baseline gap-1 mb-2">
-								<span className="font-semibold text-black text-4xl">
+								<span className="font-semibold text-black text-3xl lg:text-4xl">
 									$42,212
 								</span>
-								<span className="font-light text-gray-400 text-2xl">.14</span>
+								<span className="font-light text-gray-400 text-xl lg:text-2xl">
+									.14
+								</span>
 							</div>
-							<div className="flex items-center gap-2 text-sm">
+							<div className="flex items-center gap-2 text-xs lg:text-sm">
 								<span className="text-gray-400">+$12.5</span>
 								<div className="flex items-center gap-1 text-green-600">
 									<TrendingUp className="w-3 h-3" />
@@ -64,8 +66,8 @@ const DashboardPreviewCard = ({
 						</div>
 
 						<div
-							className="w-full flex-1 mt-auto -mx-10 px-0"
-							style={{ width: "calc(100% + 5rem)" }}
+							className="w-full flex-1 mt-auto -mx-6 lg:-mx-10"
+							style={{ width: "calc(100% + 3rem)" }}
 						>
 							<img
 								src={graphSvgLight}
@@ -75,7 +77,7 @@ const DashboardPreviewCard = ({
 						</div>
 					</div>
 
-					<p className="text-gray-400 text-xl leading-relaxed max-w-xl">
+					<p className="text-gray-400 text-lg lg:text-xl leading-relaxed max-w-xl">
 						Some text here explaining what this feature does. Preferably 2-3
 						rows max. This is how it would look with 3 rows for now.
 					</p>
@@ -91,7 +93,7 @@ const DashboardPreviewCard = ({
 				<div>
 					<p className="text-gray-500 text-sm mb-4">Customise</p>
 
-					<h2 className="text-white font-semibold leading-tight max-w-2xl text-2xl mb-8">
+					<h2 className="text-white font-semibold leading-tight max-w-2xl text-xl lg:text-2xl mb-6 lg:mb-8">
 						Custom Dashboards, tailored for your requirements.
 					</h2>
 				</div>
@@ -104,7 +106,7 @@ const DashboardPreviewCard = ({
 					/>
 				</div>
 
-				<p className="text-gray-500 text-xl leading-relaxed max-w-xl mt-8">
+				<p className="text-gray-500 text-lg lg:text-xl leading-relaxed max-w-xl mt-6 lg:mt-8">
 					Some text here explaining what this feature does. Preferably 2-3 rows
 					max. This is how it would look with 3 rows for now.
 				</p>

@@ -26,17 +26,21 @@ const TeamMemberCard = ({ member, className = "" }: TeamMemberCardProps) => {
 
 	// Member cell with image and info
 	return (
-		<div className={`w-full h-full flex items-center justify-center ${className}`}>
-			<div className="flex flex-col items-start">
+		<div
+			className={`w-full h-full flex items-center justify-center p-2 lg:p-4 ${className}`}
+		>
+			<div className="flex flex-col items-start w-fit">
 				<img
 					src={member.image}
 					alt={member.name}
-					className="w-40 h-40 object-cover"
+					className="w-50 max-w-full aspect-square object-cover"
 				/>
-				<h3 className="text-2xl font-medium text-black leading-tight mt-4">
+				<h3 className="text-xl lg:text-2xl font-medium text-black leading-tight mt-4">
 					{member.name}
 				</h3>
-				<p className="text-base font-extralight text-gray-400">{member.role}</p>
+				<p className="text-sm lg:text-base font-extralight text-gray-400">
+					{member.role}
+				</p>
 			</div>
 		</div>
 	);

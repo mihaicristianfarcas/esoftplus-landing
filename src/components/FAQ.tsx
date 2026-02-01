@@ -9,14 +9,14 @@ import { faqItems } from "../data/faq";
 
 const FAQ = () => {
 	return (
-		<section className="relative w-full bg-white py-36">
-			<div className="max-w-7xl mx-auto w-full h-full px-8 relative">
+		<section className="relative w-full bg-white py-12 lg:py-36">
+			<div className="max-w-7xl mx-auto w-full px-6 lg:px-8">
 				{/* Outer Container: Left content + Right card */}
-				<div className="flex flex-row items-start justify-between gap-12">
+				<div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-24">
 					{/* Left Container: Title + Questions */}
-					<div className="flex flex-col items-start w-[60%]">
+					<div className="flex flex-col items-start w-full lg:w-[60%]">
 						{/* Title */}
-						<h2 className="text-6xl md:text-7xl font-light leading-tight tracking-tighter mb-10">
+						<h2 className="section-title mb-10">
 							Frequently asked <br />
 							<span className="text-gray-300">questions</span>
 						</h2>
@@ -26,14 +26,14 @@ const FAQ = () => {
 							type="single"
 							collapsible
 							defaultValue="who-am-i"
-							className="w-full min-h-175"
+							className="w-full"
 						>
 							{faqItems.map((item) => (
 								<AccordionItem key={item.id} value={item.id}>
-									<AccordionTrigger className="text-xl font-normal text-black hover:no-underline py-6">
+									<AccordionTrigger className="text-lg lg:text-xl font-normal text-black hover:no-underline py-6 text-left">
 										{item.question}
 									</AccordionTrigger>
-									<AccordionContent className="text-gray-600 leading-relaxed pr-8 text-base">
+									<AccordionContent className="text-gray-600 leading-relaxed pr-8 text-sm lg:text-base">
 										{item.answer}
 									</AccordionContent>
 								</AccordionItem>
@@ -42,7 +42,7 @@ const FAQ = () => {
 					</div>
 
 					{/* Right Column - Contact Card */}
-					<div className="w-[35%] shrink-0 self-start top-8">
+					<div className="w-full lg:w-[35%] shrink-0">
 						<ContactCard />
 					</div>
 				</div>

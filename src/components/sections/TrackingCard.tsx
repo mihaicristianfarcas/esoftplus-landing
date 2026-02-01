@@ -16,11 +16,11 @@ const TrackingCard = () => {
 			<div className="h-full flex flex-col justify-between relative z-10">
 				<p className="text-gray-400 text-sm mb-4">Centralise</p>
 
-				<h2 className="text-black font-semibold leading-tight text-2xl mb-8">
+				<h2 className="text-black font-semibold leading-tight text-xl lg:text-2xl mb-8">
 					Track everything with ease.
 				</h2>
 
-				<div className="relative mb-12 flex-1">
+				<div className="relative mb-8 lg:mb-12 flex-1">
 					<img
 						src={trackNodesPng}
 						alt="Track nodes showing Total Stock, Central HUB, and cargo warehouse"
@@ -28,7 +28,7 @@ const TrackingCard = () => {
 					/>
 				</div>
 
-				<p className="text-gray-400 text-sm leading-relaxed max-w-2xl">
+				<p className="text-gray-400 text-xs lg:text-lg leading-relaxed max-w-2xl">
 					Some text here explaining what this feature does. Preferably 2-3 rows
 					max.
 				</p>

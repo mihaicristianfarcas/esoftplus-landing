@@ -32,23 +32,23 @@ const FeatureTagCard = ({
 					</p>
 
 					<h2
-						className={`font-semibold leading-tight text-3xl mb-2 ${isDark ? "text-white" : "text-black"}`}
+						className={`font-semibold leading-tight text-2xl lg:text-3xl mb-4 ${isDark ? "text-white" : "text-black"}`}
 					>
 						{title}
 					</h2>
 
-					<div className="flex flex-col gap-3 mb-3">
+					<div className="flex flex-col gap-3 mb-6">
 						{features.map((row) => {
 							const rowKey = row.join("-");
 							return (
-								<div key={rowKey} className="flex flex-wrap gap-3">
+								<div key={rowKey} className="flex flex-wrap gap-2 lg:gap-3">
 									{row.map((feature) => (
 										<span
 											key={feature}
 											className={
 												feature === "& More"
-													? `feature-badge-muted`
-													: `feature-badge`
+													? `feature-badge-muted text-xs lg:text-sm`
+													: `feature-badge text-xs lg:text-sm`
 											}
 										>
 											{feature}
@@ -60,10 +60,10 @@ const FeatureTagCard = ({
 					</div>
 				</div>
 				<button type="button" className="btn-full-width">
-					<span className="text-lg font-medium">{buttonText}</span>
+					<span className="text-base lg:text-lg font-medium">{buttonText}</span>
 					<div className={isDark ? "icon-circle-white" : "icon-circle"}>
 						<ArrowRight
-							className={`w-5 h-5 ${isDark ? "text-black" : "text-white"}`}
+							className={`w-4 h-4 lg:w-5 lg:h-5 ${isDark ? "text-black" : "text-white"}`}
 						/>
 					</div>
 				</button>

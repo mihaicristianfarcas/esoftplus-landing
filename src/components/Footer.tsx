@@ -121,7 +121,7 @@ const Footer = () => {
 				{/* Large Esoftplus text - SVG based */}
 				<div className="w-full px-6 md:px-10 -mt-4 md:-mt-14">
 					<svg
-						viewBox="10 0 930 155"
+						viewBox="10 0 935 155"
 						className="w-full h-auto"
 						preserveAspectRatio="xMidYMax meet"
 					>

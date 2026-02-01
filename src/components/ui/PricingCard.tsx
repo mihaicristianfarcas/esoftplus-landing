@@ -31,11 +31,15 @@ const PricingCard = ({
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
-					boxShadow: "0px 60px 60px rgba(0, 0, 0, 0.2)",
 				}}
 			>
 				{/* Inner Card */}
-				<div className="relative bg-black rounded-2xl p-6 flex flex-col h-full overflow-hidden">
+				<div
+					className="relative bg-black rounded-2xl p-6 flex flex-col h-full overflow-hidden"
+					style={{
+						boxShadow: "0px 60px 60px rgba(0, 0, 0, 0.3)",
+					}}
+				>
 					{/* Blue Flame Background */}
 					<img
 						src={pricingBlueFlame}

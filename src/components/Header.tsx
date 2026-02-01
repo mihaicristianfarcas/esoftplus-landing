@@ -66,7 +66,7 @@ const Header = () => {
 
 			{/* Mobile Navigation Dropdown */}
 			{isMenuOpen && (
-				<div className="lg:hidden absolute top-full left-0 right-0 border-t border-gray-100 p-6 flex flex-col gap-6 shadow-xl">
+				<div className="lg:hidden absolute top-full left-0 right-0 border-t bg-white border-gray-100 p-6 flex flex-col gap-6 shadow-xl">
 					<nav className="flex flex-col gap-4">
 						<a
 							href="#home"

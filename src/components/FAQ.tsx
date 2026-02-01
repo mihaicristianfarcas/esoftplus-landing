@@ -9,7 +9,7 @@ import { faqItems } from "../data/faq";
 
 const FAQ = () => {
 	return (
-		<section className="relative w-full h-full">
+		<section className="relative w-full h-screen flex flex-col justify-center overflow-hidden">
 			<div className="max-w-7xl mx-auto w-full">
 				{/* Outer Container: Left content + Right card */}
 				<div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-24">

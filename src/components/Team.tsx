@@ -5,7 +5,7 @@ import TeamMemberCard from "./ui/TeamMemberCard";
 
 const Team = () => {
 	return (
-		<section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden">
+		<section className="relative w-full h-screen flex flex-col justify-center overflow-hidden">
 			{/* Left gradient */}
 			<div
 				className="absolute left-0 top-0 w-full lg:w-1/3 h-1/2 lg:h-full bg-contain bg-left bg-no-repeat pointer-events-none opacity-50 lg:opacity-100"
@@ -27,12 +27,12 @@ const Team = () => {
 			<div className="max-w-7xl mx-auto w-full relative z-10">
 				{/* Header */}
 				<div className="text-center mb-16">
-					<h2 className="text-4xl lg:text-6xl font-light leading-tight tracking-tight mb-6">
+					<h2 className="text-5xl lg:text-7xl font-light leading-tight tracking-tight mb-6">
 						Meet the team
 						<br />
 						behind the project
 					</h2>
-					<p className="text-gray-500 text-sm lg:text-base max-w-xl mx-auto leading-relaxed px-4">
+					<p className="text-gray-500 text-md lg:text-lg max-w-xl mx-auto leading-relaxed px-4">
 						With deep expertise in ERP integration and a passion for great user
 						experiences, our team is here to help you unlock the full potential
 						of your data, every step of the way.

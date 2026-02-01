@@ -85,7 +85,7 @@ const FeaturesCarousel = () => {
 							paddingRight: "1.5rem",
 						}}
 					>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
 							<FeatureTagCard
 								variant="dark"
 								title="Everything you need, all in one place."
@@ -93,13 +93,13 @@ const FeaturesCarousel = () => {
 								features={features}
 							/>
 						</div>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
 							<TrackingCard />
 						</div>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
 							<DashboardPreviewCard variant="light" />
 						</div>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[600px]">
+						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
 							<DashboardPreviewCard variant="dark" />
 						</div>{" "}
 						{/* Spacer to allow last element to scroll to starting position */}

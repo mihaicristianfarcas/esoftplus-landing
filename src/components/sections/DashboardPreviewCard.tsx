@@ -30,14 +30,14 @@ const DashboardPreviewCard = ({
 					style={getRadialGradientOverlay()}
 				/>
 
-				<div className="h-full flex flex-col justify-between relative z-10">
-					<p className="text-gray-400 text-sm mb-4">Customise</p>
+				<div className="h-full flex flex-col justify-between relative z-10 min-h-0">
+					<p className="text-gray-400 text-lg mb-4">Customise</p>
 
 					<h2 className="text-black font-semibold leading-tight text-xl lg:text-2xl mb-6 lg:mb-8 max-w-2xl">
 						Custom Dashboards, tailored for your requirements.
 					</h2>
 
-					<div className="relative flex-1 flex flex-col mb-6 lg:mb-8">
+					<div className="relative flex-1 flex flex-col mb-6 lg:mb-8 min-h-0">
 						<button
 							type="button"
 							className="absolute top-0 right-0 text-gray-400 hover:text-gray-600 transition-colors z-10"
@@ -65,10 +65,7 @@ const DashboardPreviewCard = ({
 							</div>
 						</div>
 
-						<div
-							className="w-full flex-1 mt-auto -mx-6 lg:-mx-10"
-							style={{ width: "calc(100% + 3rem)" }}
-						>
+						<div className="flex-1 mt-auto -mx-6 lg:-mx-10 w-[calc(100%+3rem)] lg:w-[calc(100%+5rem)]">
 							<img
 								src={graphSvgLight}
 								alt="Performance graph"
@@ -91,7 +88,7 @@ const DashboardPreviewCard = ({
 		<div className={`feature-card bg-[#1A1A1A] ${className}`}>
 			<div className="h-full flex flex-col justify-between">
 				<div>
-					<p className="text-gray-500 text-sm mb-4">Customise</p>
+					<p className="text-gray-500 text-lg mb-4">Customise</p>
 
 					<h2 className="text-white font-semibold leading-tight max-w-2xl text-xl lg:text-2xl mb-6 lg:mb-8">
 						Custom Dashboards, tailored for your requirements.

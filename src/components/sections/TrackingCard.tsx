@@ -1,4 +1,4 @@
-import trackNodesPng from "../../assets/track-nodes.svg";
+import TrackNodes from "./TrackNodes";
 import {
 	getDottedBackground,
 	getRadialGradientOverlay,
@@ -13,22 +13,18 @@ const TrackingCard = () => {
 				style={getRadialGradientOverlay()}
 			/>
 
-			<div className="h-full flex flex-col justify-between relative z-10">
-				<p className="text-gray-400 text-sm mb-4">Centralise</p>
+			<div className="h-full flex flex-col justify-between relative z-10 min-h-0">
+				<p className="text-gray-400 text-lg mb-4">Centralise</p>
 
 				<h2 className="text-black font-semibold leading-tight text-xl lg:text-2xl mb-8">
 					Track everything with ease.
 				</h2>
 
-				<div className="relative mb-8 lg:mb-12 flex-1">
-					<img
-						src={trackNodesPng}
-						alt="Track nodes showing Total Stock, Central HUB, and cargo warehouse"
-						className="w-full h-full object-contain object-top-left"
-					/>
+				<div className="relative flex-1 min-h-0 overflow-hidden">
+					<TrackNodes />
 				</div>
 
-				<p className="text-gray-400 text-xs lg:text-lg leading-relaxed max-w-2xl">
+				<p className="text-gray-400 text-md lg:text-xl leading-relaxed max-w-2xl">
 					Some text here explaining what this feature does. Preferably 2-3 rows
 					max.
 				</p>

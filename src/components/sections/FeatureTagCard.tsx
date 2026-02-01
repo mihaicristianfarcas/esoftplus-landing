@@ -26,7 +26,7 @@ const FeatureTagCard = ({
 			<div className="h-full flex flex-col justify-between">
 				<div className="flex flex-col justify-start gap-4">
 					<p
-						className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
+						className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"}`}
 					>
 						{subtitle}
 					</p>
@@ -60,10 +60,12 @@ const FeatureTagCard = ({
 					</div>
 				</div>
 				<button type="button" className="btn-full-width">
-					<span className="text-base lg:text-lg font-medium">{buttonText}</span>
-					<div className={isDark ? "icon-circle-white" : "icon-circle"}>
+					<span className="text-base lg:text-lg pl-2 font-medium">
+						{buttonText}
+					</span>
+					<div className="icon-circle">
 						<ArrowRight
-							className={`w-4 h-4 lg:w-5 lg:h-5 ${isDark ? "text-black" : "text-white"}`}
+							className={`w-4 h-4 lg:w-5 lg:h-5 ${isDark ? "text-white" : "text-black"}`}
 						/>
 					</div>
 				</button>

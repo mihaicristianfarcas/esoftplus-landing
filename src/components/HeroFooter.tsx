@@ -12,15 +12,17 @@ const HeroFooter = () => {
 			<div className="max-w-full flex items-center justify-between gap-8">
 				{/* Left Side - Used By */}
 				<div className="flex flex-col items-start gap-0.5">
-					<span className="text-sm font-light text-gray-400">Used By</span>
-					<span className="text-sm lg:text-base font-light text-black">
+					<span className="text-md lg:text-lg font-light text-gray-400">
+						Used By
+					</span>
+					<span className="text-md lg:text-lg font-light text-black">
 						Untold
 					</span>
 				</div>
 
 				{/* Center - Description */}
 				<div className="hidden lg:block max-w-2xl text-center mx-auto">
-					<div className="flex flex-col space-y-0 text-gray-400 font-light text-sm lg:text-base">
+					<div className="flex flex-col space-y-0 text-gray-400 font-light text-md lg:text-lg">
 						<p>
 							Unlock instant analytics and reporting for your WMEnterprise data.
 						</p>

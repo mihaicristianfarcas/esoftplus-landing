@@ -9,19 +9,19 @@ const Header = () => {
 			<div className="max-w-full flex items-start justify-between">
 				{/* Logo */}
 				<div className="flex items-start align-top">
-					<span className="text-xl lg:text-2xl font-medium tracking-tight">
+					<span className="text-2xl lg:text-3xl font-medium tracking-tight">
 						Esoftplus
 						<span className="text-[10px] font-light align-text-top">®</span>
 					</span>
 				</div>
 
 				{/* Desktop Navigation */}
-				<div className="hidden lg:flex flex-row items-start gap-12 xl:gap-24">
+				<div className="hidden lg:flex flex-row items-start gap-24 xl:gap-32">
 					<div className="flex flex-col items-start gap-1 mr-6">
-						<span className="text-sm font-light text-gray-400">Built On</span>
-						<span className="text-sm font-light">WME Enterprise</span>
+						<span className="text-lg font-light text-gray-400">Built On</span>
+						<span className="text-lg font-light">WME Enterprise</span>
 					</div>
-					<nav className="flex flex-col items-start align-baseline gap-1">
+					<nav className="flex flex-col text-lg items-start align-baseline gap-1">
 						<a
 							href="#home"
 							className="text-black font-light hover:text-gray-600 transition-colors"
@@ -43,7 +43,7 @@ const Header = () => {
 					</nav>
 					<a
 						href="#demo"
-						className="flex items-center gap-2 text-black hover:text-gray-600 transition-colors"
+						className="flex items-center text-lg gap-2 text-black hover:text-gray-600 transition-colors"
 					>
 						Try Demo
 						<ArrowUpRight className="h-4 w-4" />
@@ -70,21 +70,21 @@ const Header = () => {
 					<nav className="flex flex-col gap-4">
 						<a
 							href="#home"
-							className="text-lg font-light"
+							className="text-sm font-light"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							Home
 						</a>
 						<a
 							href="#contact"
-							className="text-lg font-light"
+							className="text-sm font-light"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							Contact Us
 						</a>
 						<a
 							href="#pricing"
-							className="text-lg font-light"
+							className="text-sm font-light"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							Pricing

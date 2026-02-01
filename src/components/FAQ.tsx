@@ -10,7 +10,7 @@ import { faqItems } from "../data/faq";
 const FAQ = () => {
 	return (
 		<section className="relative w-full h-full">
-			<div className="max-w-7xl mx-auto w-full px-6 lg:px-8">
+			<div className="max-w-7xl mx-auto w-full">
 				{/* Outer Container: Left content + Right card */}
 				<div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-24">
 					{/* Left Container: Title + Questions */}

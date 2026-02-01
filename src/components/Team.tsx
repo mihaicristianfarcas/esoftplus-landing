@@ -24,7 +24,7 @@ const Team = () => {
 				}}
 			/>
 
-			<div className="max-w-7xl mx-auto w-full px-6 lg:px-8 relative z-10">
+			<div className="max-w-7xl mx-auto w-full relative z-10">
 				{/* Header */}
 				<div className="text-center mb-16">
 					<h2 className="text-4xl lg:text-6xl font-light leading-tight tracking-tight mb-6">

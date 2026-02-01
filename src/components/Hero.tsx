@@ -14,22 +14,22 @@ const Hero = () => {
 				}}
 			/>
 			{/* Hero Content */}
-			<div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-6 text-center">
+			<div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl mt-20 text-center">
 				{/* Top Text */}
-				<p className="text-gray-400 mb-4 animate-fade-in">
+				<p className="text-gray-400 mb-4 text-xl animate-fade-in">
 					Unlock full potential.
 				</p>
 
 				{/* Main Heading */}
-				<h1 className="hero-title mb-12 lg:mb-24 tracking-tighter">
+				<h1 className="hero-title mb-16 lg:mb-28 tracking-tighter">
 					Mobilize Your ERP
 				</h1>
 
 				{/* CTA Buttons */}
-				<div className="flex flex-col sm:flex-row items-center gap-4 lg:gap-6 mb-16 lg:mb-10">
+				<div className="grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr gap-4 lg:gap-6 mb-16 lg:mb-10">
 					<button
 						type="button"
-						className="w-full sm:w-auto flex items-center bg-black text-white gap-6 pl-1.5 pr-8 py-1.5 rounded-full hover:bg-gray-800 transition-all text-lg lg:text-xl font-light tracking-tight"
+						className="flex items-center justify-center bg-black text-white gap-6 pl-1.5 pr-8 py-1.5 rounded-full hover:bg-gray-800 transition-all text-lg lg:text-xl font-light tracking-tight"
 					>
 						<div
 							className="relative border border-gray-600 rounded-full px-5 py-3 overflow-hidden"
@@ -44,22 +44,21 @@ const Hero = () => {
 					</button>
 					<button
 						type="button"
-						className="w-full sm:w-auto bg-white text-black px-10 py-4 rounded-full hover:bg-gray-100 transition-all text-lg lg:text-xl font-light tracking-tight border border-gray-300"
+						className="flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-100 transition-all text-lg lg:text-xl font-light tracking-tight border border-gray-300"
 					>
 						Contact Us
 					</button>
 				</div>
 
 				{/* Dashboard Image Container - Oval with overflow */}
-				<div className="relative w-full max-w-6xl mx-auto">
+				<div className="relative w-full mx-auto">
 					{/* Oval Background Container */}
 					<div
-						className="relative w-full bg-[#F0F0F0] overflow-hidden rounded-[80px] lg:rounded-[240px]"
-						style={{ aspectRatio: "22 / 11" }}
+						className="relative w-[90%] mx-auto bg-[#F0F0F0] overflow-hidden rounded-[80px] lg:rounded-[240px]"
+						style={{ aspectRatio: "23 / 11" }}
 					>
-						{/* Dashboard Image - overflowing 30% to the top */}
 						<div
-							className="absolute w-[95%] lg:w-[90%] left-1/2 transform -translate-x-1/2"
+							className="absolute w-[75%] left-1/2 transform -translate-x-1/2"
 							style={{
 								filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.3))",
 							}}

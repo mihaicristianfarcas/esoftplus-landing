@@ -4,7 +4,7 @@ import backgroundPattern from "../assets/gradient-hero.png";
 
 const Hero = () => {
 	return (
-		<section className="relative min-h-[90svh] lg:h-screen w-full flex items-center justify-center py-20 lg:py-0 overflow-hidden">
+		<section className="relative min-h-[90svh] lg:h-screen w-full flex items-center justify-center overflow-hidden">
 			<div
 				className="absolute inset-0 w-full h-full bg-center bg-no-repeat pointer-events-none"
 				style={{

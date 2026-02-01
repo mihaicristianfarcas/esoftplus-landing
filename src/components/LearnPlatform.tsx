@@ -5,9 +5,9 @@ import testimonialDots from "../assets/testimonial-dots.svg";
 
 const LearnPlatform = () => {
 	return (
-		<section className="relative w-full min-h-screen bg-white flex flex-col justify-center overflow-hidden py-12 lg:py-24">
-			<div className="max-w-[1280px] mx-auto w-full px-6 lg:px-10">
-				<div className="flex flex-col lg:gap-16">
+		<section className="relative w-full h-screen flex flex-col justify-center overflow-hidden">
+			<div className="max-w-[1280px] mx-auto">
+				<div className="flex flex-col gap-8 lg:gap-16">
 					{/* Header + Video Row */}
 					<div className="flex flex-col lg:flex-row items-stretch gap-12">
 						{/* Left Column - Text Content */}

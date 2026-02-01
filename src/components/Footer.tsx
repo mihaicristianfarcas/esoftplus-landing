@@ -3,13 +3,13 @@ import SendIcon from "../assets/send-paper-plane.svg";
 
 const Footer = () => {
 	return (
-		<footer className="w-full px-4 pb-4 mt-64">
-			<div className="relative bg-black rounded-3xl overflow-hidden">
+		<footer className="w-full px-4 pb-4 mt-40">
+			<div className="relative bg-black h-[50vh] rounded-3xl overflow-hidden">
 				{/* Main content area */}
-				<div className="mx-auto w-full px-10 pb-[25vh] pt-8">
+				<div className="mx-auto w-full p-10">
 					<div className="flex flex-row items-start justify-between">
 						{/* Left side - Heading + Email */}
-						<div className="flex flex-col w-[40%]">
+						<div className="flex flex-col w-[50%]">
 							<div className="flex flex-col gap-6">
 								<h2 className="text-6xl md:text-7xl font-light leading-tight tracking-tighter text-white whitespace-nowrap">
 									Mobilize Your ERP
@@ -26,22 +26,22 @@ const Footer = () => {
 								{/* Try for Free Button */}
 								<button
 									type="button"
-									className="w-[40%] bg-white text-black py-3 pl-6 pr-4 rounded-full flex items-center justify-between hover:bg-gray-100 transition-all group"
+									className="w-60 whitespace-nowrap bg-white text-black py-3 pl-6 pr-4 rounded-full flex items-center justify-between hover:bg-gray-100 transition-all group no-shrink"
 								>
-									<span className="font-medium">Try for free</span>
+									<span className="font-medium">Try For Free</span>
 									<div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
 										<ArrowRight className="w-4 h-4 text-white" />
 									</div>
 								</button>
 								{/* Email Option */}
-								<div className="flex items-center justify-between w-[40%] text-white pr-4">
+								<div className="flex items-center justify-between w-100 text-white pr-4">
 									<div className="flex items-center gap-3 text-white">
-										<img src={SendIcon} alt="" className="w-7 h-7 shrink-0" />
+										<img src={SendIcon} alt="" className="w-8 h-8 shrink-0" />
 										<div>
-											<p className="text-sm mb-0.5">Or send an email.</p>
+											<p className="text-lg mb-0.5">Send us a message.</p>
 											<a
 												href="mailto:support@esoftplus.com"
-												className="text-gray-400 hover:text-gray-700 transition-colors"
+												className="text-gray-400 text-lg hover:text-gray-700 transition-colors"
 											>
 												support@esoftplus.com
 											</a>
@@ -117,7 +117,7 @@ const Footer = () => {
 				</div>
 
 				{/* Large Esoftplus text - absolutely positioned, overflowing bottom */}
-				<div className="absolute bottom-0 left-0 right-0 translate-y-[35%] pointer-events-none">
+				<div className="absolute bottom-0 left-0 right-0 translate-y-[30%] pointer-events-none">
 					<svg
 						viewBox="0 0 900 180"
 						xmlns="http://www.w3.org/2000/svg"

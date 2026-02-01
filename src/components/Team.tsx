@@ -5,7 +5,7 @@ import TeamMemberCard from "./ui/TeamMemberCard";
 
 const Team = () => {
 	return (
-		<section className="relative w-full min-h-screen bg-white flex flex-col justify-center overflow-hidden py-24">
+		<section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden">
 			{/* Left gradient */}
 			<div
 				className="absolute left-0 top-0 w-full lg:w-1/3 h-1/2 lg:h-full bg-contain bg-left bg-no-repeat pointer-events-none opacity-50 lg:opacity-100"

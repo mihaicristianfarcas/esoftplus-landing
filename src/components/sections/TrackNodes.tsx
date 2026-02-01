@@ -20,9 +20,9 @@ const NodeCard = ({ icon, title, value }: NodeCardProps) => (
 	>
 		<div className="flex flex-row items-center gap-4">
 			<img src={icon} alt="" className="w-7 h-7 shrink-0" />
-			<span className="text-black text-lg font-normal">{title}</span>
+			<span className="text-black text-md md:text-lg font-normal">{title}</span>
 		</div>
-		<span className="text-black/40 text-lg ml-[2px]">{value}</span>
+		<span className="text-black/40 text-md lg:text-lg ml-[2px]">{value}</span>
 	</div>
 );
 

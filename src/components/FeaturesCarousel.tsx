@@ -12,47 +12,91 @@ const FeaturesCarousel = () => {
 
 	const containerRef = useRef<HTMLDivElement>(null);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
+	// Cache scroll calculation values to avoid recalculating on every scroll
+	const scrollMetricsRef = useRef<{
+		maxScroll: number;
+		containerHeight: number;
+		initialized: boolean;
+	}>({ maxScroll: 0, containerHeight: 0, initialized: false });
 
 	useEffect(() => {
 		const container = containerRef.current;
 		const scrollContainer = scrollContainerRef.current;
 		if (!container || !scrollContainer) return;
 
-		const handleScroll = () => {
-			const rect = container.getBoundingClientRect();
+		// Cache card elements and calculate metrics once
+		const initializeScrollMetrics = () => {
+			// Get all card elements by direct children (more reliable than class selectors)
+			const cards = Array.from(scrollContainer.children).filter(
+				(child) =>
+					child.classList.contains("flex-none") &&
+					child.getAttribute("data-card") === "true",
+			) as HTMLElement[];
+
+			if (cards.length === 0) return false;
+
+			const firstCard = cards[0];
+			const lastCard = cards[cards.length - 1];
+
+			// Cache DOM measurements (js-cache-property-access)
+			const firstCardLeft = firstCard.offsetLeft;
+			const lastCardLeft = lastCard.offsetLeft;
 			const containerHeight = container.offsetHeight;
+			const windowHeight = window.innerHeight;
 
-			// Start effect when section reaches top of viewport
-			if (rect.top <= 0 && rect.bottom > window.innerHeight) {
-				// Calculate scroll progress through the section
-				const scrollProgress =
-					Math.abs(rect.top) / (containerHeight - window.innerHeight);
+			scrollMetricsRef.current = {
+				maxScroll: lastCardLeft - firstCardLeft,
+				containerHeight: containerHeight - windowHeight,
+				initialized: true,
+			};
 
-				// Get all card elements (excluding the spacer)
-				const cards = scrollContainer.querySelectorAll(
-					".flex-none:not(:last-child)",
-				);
-				const firstCard = cards[0] as HTMLElement;
-				const lastCard = cards[cards.length - 1] as HTMLElement;
-
-				if (firstCard && lastCard) {
-					// The first card's offsetLeft is where it starts (should be 0 since padding is on container)
-					// The last card should scroll to align its left edge with where the first card started
-					// Max scroll = distance from first card to last card
-					const maxScroll = lastCard.offsetLeft - firstCard.offsetLeft;
-
-					// Apply horizontal scroll based on vertical scroll progress
-					const targetScroll = scrollProgress * maxScroll;
-					scrollContainer.scrollLeft = targetScroll;
-				}
-			}
+			return true;
 		};
+
+		const handleScroll = () => {
+			// Cache getBoundingClientRect result (js-cache-property-access)
+			const rect = container.getBoundingClientRect();
+			const rectTop = rect.top;
+			const rectBottom = rect.bottom;
+			const windowHeight = window.innerHeight;
+
+			// Early exit if not in scroll range (js-early-exit)
+			if (rectTop > 0 || rectBottom <= windowHeight) {
+				return;
+			}
+
+			// Initialize metrics on first scroll if not done
+			if (!scrollMetricsRef.current.initialized) {
+				const success = initializeScrollMetrics();
+				if (!success) return; // Early exit if initialization failed
+			}
+
+			// Use cached values for calculation
+			const { maxScroll, containerHeight } = scrollMetricsRef.current;
+
+			// Calculate scroll progress through the section (0 to 1)
+			// Using Math.min/max to clamp the value for consistent behavior
+			const scrollProgress = Math.max(
+				0,
+				Math.min(1, Math.abs(rectTop) / containerHeight),
+			);
+
+			// Apply smooth horizontal scroll with clamping
+			const targetScroll = scrollProgress * maxScroll;
+			scrollContainer.scrollLeft = targetScroll;
+		};
+
+		// Initialize metrics after a brief delay to ensure layout is complete
+		const timeoutId = setTimeout(() => {
+			initializeScrollMetrics();
+		}, 100);
 
 		window.addEventListener("scroll", handleScroll, { passive: true });
 		handleScroll(); // Initial check
 
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
+			clearTimeout(timeoutId);
 		};
 	}, []);
 
@@ -66,9 +110,9 @@ const FeaturesCarousel = () => {
 				position: "relative",
 			}}
 		>
-			<section className="sticky top-0 w-full h-screen bg-white flex flex-col justify-center overflow-hidden">
+			<section className="sticky top-0 w-full h-screen flex flex-col justify-center overflow-hidden">
 				{/* Header - constrained width */}
-				<div className="max-w-[1280px] mx-auto w-full px-6 lg:px-10">
+				<div className="max-w-[1280px] px-6 mx-auto w-full">
 					<h2 className="section-title mb-6 lg:mb-12">
 						Everything you <br className="hidden sm:block" />
 						need, <span className="text-gray-400">all in one place.</span>
@@ -85,7 +129,10 @@ const FeaturesCarousel = () => {
 							paddingRight: "1.5rem",
 						}}
 					>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
+						<div
+							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
+							data-card="true"
+						>
 							<FeatureTagCard
 								variant="dark"
 								title="Everything you need, all in one place."
@@ -93,15 +140,24 @@ const FeaturesCarousel = () => {
 								features={features}
 							/>
 						</div>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
+						<div
+							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
+							data-card="true"
+						>
 							<TrackingCard />
 						</div>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
+						<div
+							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
+							data-card="true"
+						>
 							<DashboardPreviewCard variant="light" />
 						</div>
-						<div className="flex-none w-[85vw] sm:w-[540px] h-[560px]">
+						<div
+							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
+							data-card="true"
+						>
 							<DashboardPreviewCard variant="dark" />
-						</div>{" "}
+						</div>
 						{/* Spacer to allow last element to scroll to starting position */}
 						<div
 							className="flex-none"
@@ -111,19 +167,19 @@ const FeaturesCarousel = () => {
 						/>
 					</div>
 				</div>
-
-				<style>{`
-					.scrollbar-hide::-webkit-scrollbar {
-						display: none;
-					}
-					.scrollbar-hide {
-						-ms-overflow-style: none;
-						scrollbar-width: none;
-					}
-				`}</style>
 			</section>
 		</div>
 	);
 };
+
+// Static CSS injected once at module level (rendering-hoist-jsx optimization)
+// This ensures the style is only created once, not on every component render
+const styleId = "scrollbar-hide-styles";
+if (typeof document !== "undefined" && !document.getElementById(styleId)) {
+	const style = document.createElement("style");
+	style.id = styleId;
+	style.textContent = `.scrollbar-hide::-webkit-scrollbar{display:none}.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}`;
+	document.head.appendChild(style);
+}
 
 export default FeaturesCarousel;

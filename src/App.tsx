@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 function App() {
 	return (
 		<div className="relative min-h-screen bg-white">
-			<div className="relative z-10">
+			<div className="relative z-10 h-full flex flex-col gap-12 md:gap-36">
 				<Header />
 				<Hero />
 				<HeroFooter />

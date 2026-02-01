@@ -6,7 +6,7 @@ const Pricing = () => {
 	return (
 		<section
 			id="pricing"
-			className="relative w-full min-h-screen bg-white flex flex-col justify-center overflow-hidden py-12 lg:py-24"
+			className="relative w-full min-h-screen bg-white flex flex-col justify-center overflow-hidden"
 		>
 			<div className="max-w-7xl mx-auto w-full px-6">
 				{/* Title */}

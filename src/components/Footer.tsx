@@ -4,12 +4,12 @@ import SendIcon from "../assets/send-paper-plane.svg";
 const Footer = () => {
 	return (
 		<footer className="w-full px-4 pb-4 mt-40">
-			<div className="relative bg-black h-[50vh] rounded-3xl overflow-hidden">
+			<div className="bg-black rounded-3xl overflow-hidden flex flex-col justify-between">
 				{/* Main content area */}
-				<div className="mx-auto w-full p-10">
+				<div className="w-full p-10">
 					<div className="flex flex-row items-start justify-between">
 						{/* Left side - Heading + Email */}
-						<div className="flex flex-col w-[50%]">
+						<div className="flex flex-col gap-24 w-[50%]">
 							<div className="flex flex-col gap-6">
 								<h2 className="text-6xl md:text-7xl font-light leading-tight tracking-tighter text-white whitespace-nowrap">
 									Mobilize Your ERP
@@ -115,51 +115,42 @@ const Footer = () => {
 					{/* Horizontal divider */}
 					<div className="mt-8 border-t border-gray-600" />
 				</div>
-
-				{/* Large Esoftplus text - absolutely positioned, overflowing bottom */}
-				<div className="absolute bottom-0 left-0 right-0 translate-y-[30%] pointer-events-none">
+				{/* Large Esoftplus text - SVG based */}
+				<div className="w-full px-10 translate-y-[30%] -mt-[15vh]">
 					<svg
-						viewBox="0 0 900 180"
-						xmlns="http://www.w3.org/2000/svg"
+						viewBox="10 3 900 220"
 						className="w-full h-auto"
-						aria-hidden="true"
+						preserveAspectRatio="xMidYMax meet"
 					>
 						<defs>
-							<linearGradient
-								id="footer-text-gradient"
-								x1="0"
-								y1="0"
-								x2="0"
-								y2="1"
-							>
+							<linearGradient id="footer-gradient" x1="0" y1="0" x2="0" y2="1">
 								<stop offset="0%" stopColor="white" />
-								<stop offset="85%" stopColor="#000000" />
+								<stop offset="100%" stopColor="black" />
 							</linearGradient>
 						</defs>
 						<text
 							x="50%"
-							y="50%"
-							dominantBaseline="central"
+							y="195"
 							textAnchor="middle"
-							fill="url(#footer-text-gradient)"
-							style={{
-								fontSize: "205px",
-								fontWeight: 500,
-								letterSpacing: "-0.03em",
-								fontFamily: "inherit",
-							}}
+							className="font-medium tracking-tighter"
+							fill="url(#footer-gradient)"
+							fontSize="220"
+							fontFamily="Inter, sans-serif"
+							letterSpacing="-0.06em"
 						>
 							Esoftplus
 							<tspan
-								style={{ fontSize: "60px", fontWeight: 300 }}
-								dy="-40"
-								dx="-10"
+								fontSize="40"
+								dy="-100"
+								dx="10"
+								fontWeight="300"
+								letterSpacing="0"
 							>
 								®
 							</tspan>
 						</text>
 					</svg>
-				</div>
+				</div>{" "}
 			</div>
 		</footer>
 	);

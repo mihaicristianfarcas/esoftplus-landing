@@ -50,7 +50,7 @@ const pct = (v: number, base: number) => `${(v / base) * 100}%`;
 
 const ConnectionDot = ({ left, top }: { left: number; top: number }) => (
 	<div
-		className="absolute w-[6px] h-[6px] rounded-full bg-white border border-[#CECECE]"
+		className="absolute w-2.5 h-2.5 rounded-full bg-white border border-[#CECECE]"
 		style={{
 			left: pct(left - 3, W),
 			top: pct(top - 3, H),
@@ -60,10 +60,7 @@ const ConnectionDot = ({ left, top }: { left: number; top: number }) => (
 
 const TrackNodes = () => {
 	return (
-		<div
-			className="w-full max-h-full"
-			style={{ aspectRatio: `${W} / ${H}` }}
-		>
+		<div className="w-full max-h-full" style={{ aspectRatio: `${W} / ${H}` }}>
 			<div className="relative w-full h-full">
 				{/* Total Stock card */}
 				<div

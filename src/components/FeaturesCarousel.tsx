@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import DashboardPreviewCard from "./sections/DashboardPreviewCard";
 import FeatureTagCard from "./sections/FeatureTagCard";
 import TrackingCard from "./sections/TrackingCard";
@@ -18,6 +18,10 @@ const FeaturesCarousel = () => {
 		containerHeight: number;
 		initialized: boolean;
 	}>({ maxScroll: 0, containerHeight: 0, initialized: false });
+
+	// Keyboard navigation state
+	const [activeCardIndex, setActiveCardIndex] = useState(0);
+	const [keyboardMode, setKeyboardMode] = useState(false);
 
 	useEffect(() => {
 		const container = containerRef.current;
@@ -54,6 +58,9 @@ const FeaturesCarousel = () => {
 		};
 
 		const handleScroll = () => {
+			// Disable keyboard mode when user scrolls with mouse/touch
+			setKeyboardMode(false);
+
 			// Cache getBoundingClientRect result (js-cache-property-access)
 			const rect = container.getBoundingClientRect();
 			const rectTop = rect.top;
@@ -100,6 +107,87 @@ const FeaturesCarousel = () => {
 		};
 	}, []);
 
+	// Keyboard navigation handlers
+	const handleCarouselKeyDown = (e: React.KeyboardEvent) => {
+		if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+
+		setKeyboardMode(true);
+		e.preventDefault();
+
+		const totalCards = 4;
+		let newIndex = activeCardIndex;
+
+		switch (e.key) {
+			case "ArrowLeft":
+				newIndex = Math.max(0, activeCardIndex - 1);
+				break;
+			case "ArrowRight":
+				newIndex = Math.min(totalCards - 1, activeCardIndex + 1);
+				break;
+			case "Home":
+				newIndex = 0;
+				break;
+			case "End":
+				newIndex = totalCards - 1;
+				break;
+		}
+
+		if (newIndex !== activeCardIndex) {
+			setActiveCardIndex(newIndex);
+			scrollToCard(newIndex);
+		}
+	};
+
+	const scrollToCard = (index: number) => {
+		if (!scrollContainerRef.current) return;
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+
+		const cards = Array.from(scrollContainerRef.current.children).filter(
+			(child) => child.getAttribute("data-card") === "true",
+		);
+		const targetCard = cards[index];
+		if (targetCard) {
+			targetCard.scrollIntoView({
+				behavior: prefersReducedMotion ? "auto" : "smooth",
+				block: "nearest",
+				inline: "start",
+			});
+			if (targetCard instanceof HTMLElement) {
+				targetCard.focus();
+			}
+		}
+	};
+
+	const handleCardFocus = (index: number) => {
+		setActiveCardIndex(index);
+		setKeyboardMode(true);
+	};
+
+	const cardsData = [
+		{
+			id: "feature-tag",
+			component: (
+				<FeatureTagCard
+					variant="dark"
+					title="Everything you need, all in one place."
+					subtitle="Centralise"
+					features={features}
+				/>
+			),
+		},
+		{ id: "tracking", component: <TrackingCard /> },
+		{
+			id: "dashboard-light",
+			component: <DashboardPreviewCard variant="light" />,
+		},
+		{
+			id: "dashboard-dark",
+			component: <DashboardPreviewCard variant="dark" />,
+		},
+	];
+
 	return (
 		<div
 			ref={containerRef}
@@ -128,36 +216,24 @@ const FeaturesCarousel = () => {
 							paddingLeft: "max(1.5rem, calc((100% - 1280px) / 2 + 1.5rem))",
 							paddingRight: "1.5rem",
 						}}
+						role="region"
+						aria-label="Features carousel"
+						onKeyDown={handleCarouselKeyDown}
+						tabIndex={-1}
 					>
-						<div
-							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
-							data-card="true"
-						>
-							<FeatureTagCard
-								variant="dark"
-								title="Everything you need, all in one place."
-								subtitle="Centralise"
-								features={features}
-							/>
-						</div>
-						<div
-							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
-							data-card="true"
-						>
-							<TrackingCard />
-						</div>
-						<div
-							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
-							data-card="true"
-						>
-							<DashboardPreviewCard variant="light" />
-						</div>
-						<div
-							className="flex-none w-[85vw] sm:w-[540px] h-[560px]"
-							data-card="true"
-						>
-							<DashboardPreviewCard variant="dark" />
-						</div>
+						{cardsData.map((cardData, index) => (
+							<div
+								key={cardData.id}
+								className="flex-none w-[85vw] sm:w-[540px] h-[560px] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500 focus-visible:ring-offset-4 rounded-3xl"
+								data-card="true"
+								tabIndex={keyboardMode && index === activeCardIndex ? 0 : -1}
+								onFocus={() => handleCardFocus(index)}
+								role="group"
+								aria-label={`Feature ${index + 1} of 4`}
+							>
+								{cardData.component}
+							</div>
+						))}
 						{/* Spacer to allow last element to scroll to starting position */}
 						<div
 							className="flex-none"

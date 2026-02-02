@@ -40,19 +40,17 @@ const PricingCard = ({
 						boxShadow: "0px 60px 60px rgba(0, 0, 0, 0.3)",
 					}}
 				>
-					{/* Blue Flame Background */}
 					<img
 						src={pricingBlueFlame}
 						alt=""
-						className="absolute bottom-0 left-0 w-full object-cover pointer-events-none opacity-70"
+						className="absolute top-3 right-4 w-20 h-20 pointer-events-none z-0"
 					/>
-
-					<div className="relative z-10 mb-8">
+					<div className="mb-8 relative z-10">
 						<p className="text-gray-400 text-sm mb-4">{title}</p>
-						<p className="text-4xl lg:text-5xl font-light text-white mb-6">
+						<p className="text-white text-4xl lg:text-5xl font-light mb-6">
 							{price}
 						</p>
-						<p className="text-gray-300 text-sm lg:text-base leading-relaxed">
+						<p className="text-gray-400 text-sm lg:text-base leading-relaxed">
 							{description}
 						</p>
 					</div>
@@ -72,7 +70,8 @@ const PricingCard = ({
 					{/* Subscribe Button */}
 					<button
 						type="button"
-						className="relative z-10 w-full bg-white text-black py-4 px-6 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group"
+						className="relative z-10 w-full bg-white text-black py-4 px-6 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+						aria-label={`Subscribe to ${title}`}
 					>
 						<span className="font-medium">{buttonText}</span>
 						<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -112,7 +111,8 @@ const PricingCard = ({
 				{/* Subscribe Button */}
 				<button
 					type="button"
-					className="w-full bg-white border border-gray-100 text-black py-3 pl-5 pr-3 rounded-xl flex items-center justify-between hover:bg-gray-100 transition-all group"
+					className="w-full bg-white border border-gray-100 text-black py-3 pl-5 pr-3 rounded-xl flex items-center justify-between hover:bg-gray-100 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+					aria-label={`Subscribe to ${title}`}
 				>
 					<span className="font-medium">{buttonText}</span>
 					<div className="icon-circle-md">

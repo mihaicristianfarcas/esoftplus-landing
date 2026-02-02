@@ -35,7 +35,8 @@ const ContactCard = memo(
 					{/* Book a Call Button */}
 					<button
 						type="button"
-						className="w-full bg-white text-black py-3 pl-6 pr-4 rounded-full flex items-center justify-between hover:bg-gray-100 transition-all group mb-6"
+						className="w-full bg-white text-black py-3 pl-6 pr-4 rounded-full flex items-center justify-between hover:bg-gray-100 transition-all group mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+						aria-label="Book a call"
 					>
 						<span className="font-medium text-sm lg:text-base">
 							{buttonText}
@@ -45,7 +46,10 @@ const ContactCard = memo(
 						</div>
 					</button>
 					{/* Email Option */}
-					<div className="flex items-center justify-between w-full text-white pr-2 lg:pr-4">
+					<a
+						href={`mailto:${email}`}
+						className="flex items-center justify-between w-full text-white pr-2 lg:pr-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] rounded-lg p-2 -m-2 hover:bg-white/5 transition-colors"
+					>
 						<div className="flex items-center gap-3 text-white">
 							<img
 								src={SendIcon}
@@ -54,18 +58,15 @@ const ContactCard = memo(
 							/>
 							<div>
 								<p className="text-xs lg:text-sm mb-0.5">Or send an email.</p>
-								<a
-									href={`mailto:${email}`}
-									className="text-gray-400 hover:text-white transition-colors text-xs lg:text-sm"
-								>
+								<span className="text-gray-400 hover:text-white transition-colors text-xs lg:text-sm">
 									{email}
-								</a>
+								</span>
 							</div>
 						</div>
 						<div className="icon-circle-white ml-auto shrink-0">
 							<ArrowRight className="w-4 h-4 text-black" />
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		);

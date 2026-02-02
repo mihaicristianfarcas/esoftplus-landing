@@ -254,3 +254,94 @@ body {
 	color: var(--color-gray-muted);
 	font-weight: 300;
 }
+
+/* ===== ACCESSIBILITY & FOCUS STYLES ===== */
+
+/* Screen reader only utility */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* Skip link styles */
+.skip-link {
+	transition: all 0.2s ease;
+}
+
+/* Global focus-visible styles for interactive elements */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+/* Focus styles for light backgrounds */
+.bg-white button:focus-visible,
+.bg-white a:focus-visible,
+.bg-gray-50 button:focus-visible,
+.bg-gray-50 a:focus-visible {
+	outline-color: #000;
+}
+
+/* Focus styles for dark backgrounds */
+.bg-black button:focus-visible,
+.bg-black a:focus-visible {
+	outline-color: #fff;
+}
+
+/* Focus styles for elements with dark background colors */
+[class*="bg-[#1a1a1a]"] button:focus-visible,
+[class*="bg-[#1a1a1a]"] a:focus-visible,
+[class*="bg-[#1A1A1A]"] button:focus-visible,
+[class*="bg-[#1A1A1A]"] a:focus-visible {
+	outline-color: #fff;
+}
+
+/* Smooth transitions for focus states */
+button,
+a,
+[role="button"] {
+	transition: outline-color 0.15s ease, outline-offset 0.15s ease;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	button:focus-visible,
+	a:focus-visible,
+	[role="button"]:focus-visible {
+		outline-width: 3px;
+	}
+}
+
+/* Touch target improvements */
+@media (pointer: coarse) {
+	button,
+	a {
+		min-height: 44px;
+		min-width: 44px;
+		touch-action: manipulation;
+	}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

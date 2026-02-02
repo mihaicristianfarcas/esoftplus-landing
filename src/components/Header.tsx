@@ -1,8 +1,26 @@
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
+
+	// Focus first link when menu opens
+	useEffect(() => {
+		if (isMenuOpen && menuRef.current) {
+			const firstLink = menuRef.current.querySelector("a");
+			if (firstLink instanceof HTMLElement) {
+				firstLink.focus();
+			}
+		}
+	}, [isMenuOpen]);
+
+	// Handle Escape key to close menu
+	const handleKeyDown = (e: React.KeyboardEvent) => {
+		if (e.key === "Escape" && isMenuOpen) {
+			setIsMenuOpen(false);
+		}
+	};
 
 	return (
 		<header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:py-6">
@@ -53,8 +71,12 @@ const Header = () => {
 				{/* Mobile Menu Button */}
 				<button
 					type="button"
-					className="lg:hidden p-2"
+					className="lg:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-md"
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
+					onKeyDown={handleKeyDown}
+					aria-expanded={isMenuOpen}
+					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+					aria-controls="mobile-menu"
 				>
 					{isMenuOpen ? (
 						<X className="h-6 w-6" />
@@ -66,7 +88,11 @@ const Header = () => {
 
 			{/* Mobile Navigation Dropdown */}
 			{isMenuOpen && (
-				<div className="lg:hidden absolute top-full left-0 right-0 border-t bg-white border-gray-100 p-6 flex flex-col gap-6 shadow-xl">
+				<div
+					ref={menuRef}
+					id="mobile-menu"
+					className="lg:hidden absolute top-full left-0 right-0 border-t bg-white border-gray-100 p-6 flex flex-col gap-6 shadow-xl"
+				>
 					<nav className="flex flex-col gap-4">
 						<a
 							href="#home"

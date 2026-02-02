@@ -43,7 +43,7 @@ const PricingCard = ({
 					<img
 						src={pricingBlueFlame}
 						alt=""
-						className="absolute top-3 right-4 w-20 h-20 pointer-events-none z-0"
+						className="absolute top-20 left-0 bottom-0 right-0 w-full h-full pointer-events-none z-0"
 					/>
 					<div className="mb-8 relative z-10">
 						<p className="text-gray-400 text-sm mb-4">{title}</p>

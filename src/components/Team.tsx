@@ -5,7 +5,7 @@ import TeamMemberCard from "./ui/TeamMemberCard";
 
 const Team = () => {
 	return (
-		<section className="relative w-full h-screen flex flex-col justify-center overflow-hidden">
+		<section className="relative w-full min-h-svh py-12 sm:py-16 lg:py-0 lg:h-screen flex flex-col justify-center overflow-hidden">
 			{/* Left gradient */}
 			<div
 				className="absolute left-0 top-0 w-full lg:w-1/3 h-1/2 lg:h-full bg-contain bg-left bg-no-repeat pointer-events-none opacity-50 lg:opacity-100"
@@ -24,15 +24,15 @@ const Team = () => {
 				}}
 			/>
 
-			<div className="max-w-7xl mx-auto w-full relative z-10">
+			<div className="max-w-7xl mx-auto w-full px-4 sm:px-6 relative z-10">
 				{/* Header */}
-				<div className="text-center mb-16">
-					<h2 className="text-5xl lg:text-7xl font-light leading-tight tracking-tight mb-6">
+				<div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+					<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight tracking-tight mb-4 sm:mb-6">
 						Meet the team
 						<br />
 						behind the project
 					</h2>
-					<p className="text-gray-500 text-md lg:text-lg max-w-xl mx-auto leading-relaxed px-4">
+					<p className="text-gray-500 text-sm sm:text-base md:text-md lg:text-lg max-w-xl mx-auto leading-relaxed px-4">
 						With deep expertise in ERP integration and a passion for great user
 						experiences, our team is here to help you unlock the full potential
 						of your data, every step of the way.
@@ -43,13 +43,13 @@ const Team = () => {
 			{/* Top horizontal dashed line - full width */}
 			<div className="w-full border-t border-dashed border-gray-300" />
 
-			<div className="max-w-7xl mx-auto w-full px-4 lg:px-8 relative z-10">
+			<div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Team Grid — Responsive cols with dashed borders */}
-				<div className="grid grid-cols-2 lg:grid-cols-4 border-l border-r border-dashed border-gray-300">
+				<div className="grid grid-cols-2 md:grid-cols-4 border-l border-r border-dashed border-gray-300">
 					{teamGrid.map((cell) => (
 						<div
 							key={cell.id}
-							className="border border-dashed border-gray-300 aspect-square lg:aspect-auto"
+							className="border border-dashed border-gray-300 aspect-square md:aspect-auto"
 						>
 							<TeamMemberCard member={cell.member} />
 						</div>

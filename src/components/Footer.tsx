@@ -58,8 +58,8 @@ const Footer = () => {
 						</div>
 
 						{/* Right side - Navigation links */}
-						<div className="flex flex-wrap items-start justify-between flex-row  gap-2 sm:gap-10 md:gap-30 lg:gap-40 mt-10 lg:mt-0 w-full lg:w-auto">
-							<div className="flex flex-col gap-1">
+						<div className="flex flex-wrap items-start justify-between flex-row gap-2 sm:gap-10 md:gap-30 lg:gap-40 mt-10 lg:mt-0 w-full lg:w-auto">
+							<div className="flex flex-col md:gap-1">
 								<span className="text-gray-500 text-xl font-light">Legal</span>
 								<a
 									href="#terms"
@@ -74,7 +74,7 @@ const Footer = () => {
 									Policy
 								</a>
 							</div>
-							<div className="flex flex-col gap-1">
+							<div className="flex flex-col md:gap-1">
 								<span className="text-gray-500 text-xl font-light">Menu</span>
 								<a
 									href="#home"
@@ -95,7 +95,7 @@ const Footer = () => {
 									FAQ
 								</a>
 							</div>
-							<div className="flex flex-col gap-1">
+							<div className="flex flex-col md:gap-1">
 								<span className="text-gray-500 text-xl font-light">
 									Actions
 								</span>

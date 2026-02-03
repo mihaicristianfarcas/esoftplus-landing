@@ -16,8 +16,8 @@ function App() {
 			>
 				Skip to main content
 			</a> */}
-			<div className="relative z-10 h-full flex flex-col">
-				<Header />
+			<Header />
+			<div className="relative h-full flex flex-col">
 				<main id="main-content">
 					<Hero />
 					<FeaturesCarousel />

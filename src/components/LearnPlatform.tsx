@@ -10,24 +10,24 @@ const LearnPlatform = () => {
 	};
 
 	return (
-		<section className="relative w-full h-screen flex flex-col justify-center overflow-hidden">
-			<div className="max-w-[1280px] mx-auto">
+		<section className="relative w-full min-h-screen py-16 lg:py-0 lg:h-screen flex flex-col justify-center overflow-hidden">
+			<div className="max-w-[1280px] mx-auto px-6">
 				<div className="flex flex-col gap-8 lg:gap-16">
 					{/* Header + Video Row */}
-					<div className="flex flex-col lg:flex-row items-stretch gap-12">
+					<div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-12">
 						{/* Left Column - Text Content */}
-						<div className="flex flex-col justify-between w-full lg:w-[45%] shrink-0 gap-12 lg:gap-[15vh]">
+						<div className="flex flex-col justify-between w-full lg:w-[45%] shrink-0 gap-8 lg:gap-[15vh]">
 							<h2 className="section-title">
 								Learn How To Use <br />
 								<span className="text-gray-300">The Platform.</span>
 							</h2>
 
-							{/* Testimonial - Desktop (hidden on mobile, shown below video) */}
-							<div className="hidden lg:flex flex-row items-stretch gap-6">
+							{/* Testimonial */}
+							<div className="lg:flex flex-row items-stretch gap-6">
 								<img
 									src={testimonialDots}
 									alt=""
-									className="h-full self-stretch"
+									className="h-10 lg:h-full self-stretch"
 								/>
 								<div>
 									<p className="text-lg lg:text-xl leading-relaxed mb-6">
@@ -79,46 +79,6 @@ const LearnPlatform = () => {
 											Watch Video
 										</span>
 									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					{/* Description + Mobile Testimonial Row */}
-					<div className="flex flex-col lg:flex-row gap-12 mt-12 lg:mt-0">
-						{/* Spacer for desktop alignment */}
-						<div className="hidden lg:block lg:w-[45%] shrink-0" />
-
-						<div className="flex flex-col gap-12">
-							<p className="text-lg lg:text-xl leading-relaxed text-gray-600">
-								Transform your WMEnterprise data into beautiful, interactive
-								dashboards—no technical setup needed. Dive into ready-made
-								reports, create custom analytics on the fly, and track your
-								business from anywhere, all in a simple, mobile-friendly
-								interface.
-							</p>
-
-							{/* Testimonial - Mobile (hidden on desktop) */}
-							<div className="flex lg:hidden flex-row items-stretch gap-4">
-								<img
-									src={testimonialDots}
-									alt=""
-									className="h-auto w-4 self-stretch"
-								/>
-								<div>
-									<p className="text-base leading-relaxed mb-4">
-										"Using this app transformed the way we track our
-										business—setup was effortless and the reports are spot-on."
-									</p>
-									<div className="flex items-center gap-3">
-										<div className="w-10 h-10 rounded-full bg-gray-100" />
-										<div>
-											<p className="text-black font-semibold text-sm">
-												Victor D.
-											</p>
-											<p className="text-gray-400 text-xs">Founder Baseline</p>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>

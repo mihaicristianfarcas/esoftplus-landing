@@ -9,14 +9,14 @@ import { faqItems } from "../data/faq";
 
 const FAQ = () => {
 	return (
-		<section className="relative w-full h-screen flex flex-col justify-center overflow-hidden">
-			<div className="max-w-7xl mx-auto w-full">
+		<section className="relative w-full min-h-screen py-16 lg:py-0 lg:h-screen flex flex-col justify-center overflow-hidden">
+			<div className="max-w-7xl mx-auto w-full px-6">
 				{/* Outer Container: Left content + Right card */}
-				<div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-24">
+				<div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-24">
 					{/* Left Container: Title + Questions */}
 					<div className="flex flex-col items-start w-full lg:w-[60%]">
 						{/* Title */}
-						<h2 className="section-title mb-10">
+						<h2 className="section-title mb-8 lg:mb-10">
 							Frequently asked <br />
 							<span className="text-gray-300">questions</span>
 						</h2>

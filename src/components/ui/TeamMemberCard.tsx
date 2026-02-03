@@ -33,7 +33,7 @@ const TeamMemberCard = ({ member, className = "" }: TeamMemberCardProps) => {
 				<img
 					src={member.image}
 					alt={member.name}
-					className="w-50 max-w-full aspect-square object-cover"
+					className="w-30 sm:w-40 md:w-50 max-w-full aspect-square object-cover"
 				/>
 				<h3 className="text-xl lg:text-2xl font-medium text-black leading-tight mt-4">
 					{member.name}

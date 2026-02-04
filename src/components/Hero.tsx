@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { ArrowUpRight, Hexagon } from "lucide-react";
 import dashboardImage from "../assets/hero-dashboard-preview.png";
 import backgroundPattern from "../assets/gradient-hero.png";
 
 const Hero = () => {
+	const [isDemoHovered, setIsDemoHovered] = useState(false);
+
 	return (
 		<section className="relative min-h-svh w-full flex items-center justify-center overflow-hidden">
 			{/* Background */}
@@ -31,11 +34,13 @@ const Hero = () => {
 				<div className="grid grid-cols-1 grid-flow-col auto-cols-fr gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-8 md:mb-10 lg:mb-12">
 					<button
 						type="button"
-						className="cursor-pointer flex items-center justify-center bg-black text-white gap-2 sm:gap-4 md:gap-6 pl-1 sm:pl-1.5 pr-4 sm:pr-6 md:pr-8 py-1 sm:py-1.5 rounded-full hover:bg-gray-800 transition-all text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap font-light tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+						onMouseEnter={() => setIsDemoHovered(true)}
+						onMouseLeave={() => setIsDemoHovered(false)}
+						className="group/btn cursor-pointer flex items-center justify-center bg-black hover:bg-sky-400 text-white gap-2 sm:gap-4 md:gap-6 pl-1 sm:pl-1.5 pr-4 sm:pr-6 md:pr-8 py-1 sm:py-1.5 rounded-full transition-all duration-200 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap font-light tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
 						aria-label="Try demo"
 					>
 						<div
-							className="relative border border-gray-600 rounded-full px-2.5 py-1.5 sm:px-4 sm:py-2.5 md:px-5 md:py-3 overflow-hidden"
+							className="relative border border-gray-600 group-hover/btn:border-gray-300 rounded-full px-2.5 py-1.5 sm:px-4 sm:py-2.5 md:px-5 md:py-3 overflow-hidden"
 							style={{
 								backgroundImage:
 									"repeating-linear-gradient(135deg, transparent, transparent 3px, rgba(255,255,255, 0.3) 3px, rgba(255,255,255,0.1) 4px)",
@@ -58,22 +63,42 @@ const Hero = () => {
 				{/* The oval maintains exact 23/11 aspect ratio and scales uniformly */}
 				<div className="relative w-[92%] sm:w-[90%] md:w-[88%] lg:w-[85%] max-w-5xl mx-auto">
 					<div
+						onMouseEnter={() => setIsDemoHovered(true)}
+						onMouseLeave={() => setIsDemoHovered(false)}
 						className="relative w-full bg-[#F0F0F0] overflow-hidden rounded-[200px]"
 						style={{
 							aspectRatio: "23 / 11",
 						}}
 					>
+						{/* Shadow wrapper - stays fixed */}
 						<div
 							className="absolute w-[75%] left-1/2 transform -translate-x-1/2"
 							style={{
 								filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.3))",
 							}}
 						>
-							<img
-								src={dashboardImage}
-								alt="Dashboard Preview"
-								className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
-							/>
+							{/* Blur target - separate from shadow */}
+							<div
+								className={`transition-all duration-200 ${isDemoHovered ? "blur-sm" : ""}`}
+							>
+								<img
+									src={dashboardImage}
+									alt="Dashboard Preview"
+									className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
+								/>
+							</div>
+						</div>
+
+						{/* Enter button - appears on hover */}
+						<div
+							className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${isDemoHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+						>
+							<button
+								type="button"
+								className="bg-black text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full text-sm sm:text-base font-light tracking-tight hover:bg-gray-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+							>
+								Enter
+							</button>
 						</div>
 					</div>
 				</div>

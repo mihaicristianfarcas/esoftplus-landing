@@ -514,6 +514,7 @@ a,
 		flex-direction: column;
 		justify-content: space-between;
 		min-width: 0;
+		max-width: 40%;
 	}
 
 	.feature-card-landscape-tracking .landscape-visual {
@@ -522,7 +523,7 @@ a,
 		align-items: center;
 		justify-content: center;
 		min-width: 0;
-		max-width: 50%;
+		max-width: 60%;
 	}
 
 	/* Track Nodes landscape optimization */

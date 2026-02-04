@@ -11,19 +11,23 @@ interface NodeCardProps {
 
 const NodeCard = ({ icon, title, value }: NodeCardProps) => (
 	<article
-		className="bg-white rounded-xl border border-black/7 flex flex-col items-start justify-between p-3 h-full w-full"
+		className="bg-white rounded-xl border border-black/7 flex flex-col items-start justify-between p-2 sm:p-3 h-full w-full min-w-0"
 		style={{
 			boxShadow: "0px 1px 4.4px rgba(0, 0, 0, 0.06)",
 		}}
 		aria-label={`${title}: ${value} items`}
 	>
-		<div className="flex flex-row items-center gap-4">
-			<img src={icon} alt="" className="w-7 h-7 shrink-0" />
-			<span className="text-black text-xs md:text-lg font-normal leading-tight">
+		<div className="flex flex-row items-center gap-2 sm:gap-3 md:gap-4 min-w-0 w-full">
+			<img
+				src={icon}
+				alt=""
+				className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 shrink-0"
+			/>
+			<span className="text-[10px] sm:text-xs md:text-sm lg:text-lg font-normal leading-tight truncate">
 				{title}
 			</span>
 		</div>
-		<span className="text-black/40 text-xs lg:text-lg mt-1 ml-[2px]">
+		<span className="text-black/40 text-[10px] sm:text-xs md:text-sm lg:text-lg mt-1 ml-[2px]">
 			{value}
 		</span>
 	</article>

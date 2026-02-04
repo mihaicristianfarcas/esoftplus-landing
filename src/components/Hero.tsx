@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight, Hexagon } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import chartsImage from "../assets/hero-dashboard-preview-charts.png";
@@ -18,23 +18,24 @@ const Hero = () => {
 
 	// Transform values for the oval expansion
 	// The oval needs to grow to fill the viewport
-	const ovalScale = useTransform(scrollYProgress, [0, 0.5], [1, 3]);
+	const ovalScaleX = useTransform(scrollYProgress, [0, 0.5], [1, 3]);
+	const ovalScaleY = useTransform(scrollYProgress, [0, 0.5], [1, 3.5]);
 
 	// Border radius from pill shape to rounded rectangle
-	const borderRadius = useTransform(scrollYProgress, [0, 0.4], [200, 24]);
+	const borderRadius = useTransform(scrollYProgress, [0, 0.4], [200, 100]);
 
 	// Move oval up to center in viewport as it expands
 	const ovalY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-40%"]);
 
 	// Image crossfade
-	const chartsOpacity = useTransform(scrollYProgress, [0.2, 0.35], [1, 0]);
-	const sidebarOpacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 1]);
+	const chartsOpacity = useTransform(scrollYProgress, [0.1, 0.15], [1, 0]);
+	const sidebarOpacity = useTransform(scrollYProgress, [0.1, 0.15], [0, 1]);
 
 	// Counter-scale for images - they should stay roughly the same size as container grows
-	const imageCounterScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
+	const imageCounterScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
 	// Footer fade out
-	const footerOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+	// const footerOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
 	return (
 		<section ref={sectionRef} className="relative h-[200vh] w-full">
@@ -95,20 +96,21 @@ const Hero = () => {
 					<div className="relative w-[92%] sm:w-[90%] md:w-[88%] lg:w-[85%] max-w-5xl mx-auto">
 						<motion.div
 							ref={ovalContainerRef}
-							onMouseEnter={() => setIsDemoHovered(true)}
-							onMouseLeave={() => setIsDemoHovered(false)}
+							// onMouseEnter={() => setIsDemoHovered(true)}
+							// onMouseLeave={() => setIsDemoHovered(false)}
 							className="relative w-full bg-[#F0F0F0] overflow-hidden rounded-[200px] z-30 origin-center"
 							style={{
 								aspectRatio: "23 / 11",
-								scale: ovalScale,
+								scaleX: ovalScaleX,
+								scaleY: ovalScaleY,
 								borderRadius: borderRadius,
 								y: ovalY,
 							}}
 						>
 							{/* Charts Image (initial) - with counter-scaling to maintain size */}
 							<motion.div
-								className="absolute inset-0 w-full h-full"
-								style={{ 
+								className="absolute inset-0 w-full h-full origin-top"
+								style={{
 									opacity: chartsOpacity,
 									scale: imageCounterScale,
 								}}
@@ -147,14 +149,14 @@ const Hero = () => {
 
 							{/* Sidebar Image (transitions in) - with counter-scaling */}
 							<motion.div
-								className="absolute inset-0 w-full h-full flex items-center justify-center bg-[#F0F0F0]"
-								style={{ 
+								className="absolute inset-0 top-0 w-full h-full flex items-start origin-top justify-center bg-[#F0F0F0]"
+								style={{
 									opacity: sidebarOpacity,
 									scale: imageCounterScale,
 								}}
 							>
 								<div
-									className="w-[48%]"
+									className="w-[60%]"
 									style={{
 										filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.3))",
 									}}
@@ -162,7 +164,11 @@ const Hero = () => {
 									<img
 										src={sidebarImage}
 										alt="Dashboard with Sidebar Preview"
-										className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
+										className="w-full rounded-md sm:rounded-lg lg:rounded-xl"
+										style={{
+											transform: "scaleY(0.9)",
+											transformOrigin: "top",
+										}}
 									/>
 								</div>
 							</motion.div>
@@ -173,7 +179,7 @@ const Hero = () => {
 				{/* Hero Footer */}
 				<motion.div
 					className="absolute inset-x-4 sm:inset-x-6 lg:inset-x-8 bottom-4 sm:bottom-6 lg:bottom-8 flex items-end justify-between gap-4"
-					style={{ opacity: footerOpacity }}
+					// style={{ opacity: footerOpacity }}
 				>
 					{/* Left Side - Used By */}
 					<div className="flex flex-col items-start gap-0.5 text-sm sm:text-base md:text-lg lg:text-xl shrink-0">
@@ -185,8 +191,8 @@ const Hero = () => {
 					<div className="hidden md:block flex-1 max-w-xl xl:max-w-2xl text-center mx-4 lg:mx-6 xl:mx-8">
 						<p className="text-gray-400 font-light text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed">
 							Unlock instant analytics and reporting for your WMEnterprise data.
-							<br className="hidden lg:block" /> No setup headaches, just powerful
-							insights, ready to go
+							<br className="hidden lg:block" /> No setup headaches, just
+							powerful insights, ready to go
 						</p>
 					</div>
 

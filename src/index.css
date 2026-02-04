@@ -444,7 +444,7 @@ a,
 	.feature-card-landscape-light .landscape-visual img {
 		max-height: 100%;
 		width: 100%;
-		object-fit: contain;
+		object-fit: fill;
 	}
 
 	/* Dashboard Preview Card - Dark variant landscape */
@@ -473,8 +473,7 @@ a,
 	.feature-card-landscape-dark .landscape-visual img {
 		max-height: 100%;
 		width: 100%;
-		object-fit: contain;
-		object-position: bottom;
+		object-fit: fill;
 	}
 
 	/* Feature Tag Card landscape */

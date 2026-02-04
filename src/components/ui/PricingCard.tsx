@@ -70,7 +70,7 @@ const PricingCard = ({
 					{/* Subscribe Button */}
 					<button
 						type="button"
-						className="relative z-10 w-full bg-white text-black py-4 px-6 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+						className="cursor-pointerrelative z-10 w-full bg-white text-black py-4 px-6 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
 						aria-label={`Subscribe to ${title}`}
 					>
 						<span className="font-medium">{buttonText}</span>
@@ -111,7 +111,7 @@ const PricingCard = ({
 				{/* Subscribe Button */}
 				<button
 					type="button"
-					className="w-full bg-white border border-gray-100 text-black py-3 pl-5 pr-3 rounded-xl flex items-center justify-between hover:bg-gray-100 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+					className="cursor-pointerw-full bg-white border border-gray-100 text-black py-3 pl-5 pr-3 rounded-xl flex items-center justify-between hover:bg-gray-100 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
 					aria-label={`Subscribe to ${title}`}
 				>
 					<span className="font-medium">{buttonText}</span>

@@ -71,7 +71,7 @@ const Header = () => {
 				{/* Mobile Menu Button */}
 				<button
 					type="button"
-					className="lg:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-md"
+					className="cursor-pointer lg:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-md"
 					onClick={() => setIsMenuOpen(!isMenuOpen)}
 					onKeyDown={handleKeyDown}
 					aria-expanded={isMenuOpen}

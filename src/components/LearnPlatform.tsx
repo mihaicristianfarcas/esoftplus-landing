@@ -71,7 +71,7 @@ const LearnPlatform = () => {
 									<button
 										type="button"
 										onClick={handleVideoClick}
-										className="bg-white/95 backdrop-blur-md text-black p-3 lg:p-4 rounded-full flex items-center gap-3 hover:bg-white transition-all shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+										className="cursor-pointer bg-white/95 backdrop-blur-md text-black p-3 lg:p-4 rounded-full flex items-center gap-3 hover:bg-white transition-all shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
 										aria-label="Watch platform tutorial video"
 									>
 										<Play className="w-5 h-5 text-black fill-black" />

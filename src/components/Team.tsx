@@ -45,7 +45,7 @@ const Team = () => {
 
 			<div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Team Grid — Responsive cols with dashed borders */}
-				<div className="grid grid-cols-2 md:grid-cols-4 border-l border-r border-dashed border-gray-300">
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 border-l border-r border-dashed border-gray-300">
 					{teamGrid.map((cell) => (
 						<div
 							key={cell.id}

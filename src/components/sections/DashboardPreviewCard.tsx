@@ -87,7 +87,7 @@ const DashboardPreviewCard = ({
 					<img
 						src={graphSvgLight}
 						alt="Performance graph"
-						className="w-full h-full object-contain object-center"
+						className="w-full h-full object-fill object-center"
 					/>
 				</div>
 			</div>
@@ -114,7 +114,7 @@ const DashboardPreviewCard = ({
 					<img
 						src={graphSvgDark}
 						alt="Performance graph"
-						className="w-full h-full object-fill object-bottom"
+						className="w-full h-full object-fill"
 					/>
 				</div>
 
@@ -129,7 +129,7 @@ const DashboardPreviewCard = ({
 				<img
 					src={graphSvgDark}
 					alt="Performance graph"
-					className="w-full h-full object-contain object-bottom"
+					className="w-full h-full object-fill"
 				/>
 			</div>
 		</div>

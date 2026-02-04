@@ -40,10 +40,12 @@ const Pricing = () => {
 						</div>
 						<button
 							type="button"
-							className="bg-black text-white p-4 rounded-xl flex items-center justify-between gap-6 lg:gap-48 hover:bg-gray-900 transition-all group shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+							className="cursor-pointer bg-black text-white p-4 rounded-xl flex items-center justify-between gap-6 lg:gap-48 hover:bg-gray-900 transition-all group shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
 							aria-label="Book a call for custom pricing"
 						>
-							<span className="font-medium">Book a call</span>
+							<span className="text-md lg:text-base font-medium">
+								Book a call
+							</span>
 							<div className="w-8 h-8 bg-white rounded-full flex items-center justify-center ">
 								<ArrowRight className="w-4 h-4 text-black" />
 							</div>

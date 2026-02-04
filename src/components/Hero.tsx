@@ -28,10 +28,10 @@ const Hero = () => {
 				</h1>
 
 				{/* CTA Buttons */}
-				<div className="grid grid-cols-1 grid-flow-col auto-cols-fr items-stretch gap-2 sm:gap-4 lg:gap-6 mb-8 sm:mb-12 md:mb-14 lg:mb-16">
+				<div className="grid grid-cols-1 grid-flow-col auto-cols-fr gap-2 sm:gap-4 lg:gap-6 mb-8 sm:mb-12 md:mb-14 lg:mb-16">
 					<button
 						type="button"
-						className="flex items-center justify-center bg-black text-white gap-2 sm:gap-4 md:gap-6 pl-1 sm:pl-1.5 pr-4 sm:pr-6 md:pr-8 py-1 sm:py-1.5 rounded-full hover:bg-gray-800 transition-all text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap font-light tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+						className="cursor-pointer flex items-center justify-center bg-black text-white gap-2 sm:gap-4 md:gap-6 pl-1 sm:pl-1.5 pr-4 sm:pr-6 md:pr-8 py-1 sm:py-1.5 rounded-full hover:bg-gray-800 transition-all text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap font-light tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
 						aria-label="Try demo"
 					>
 						<div
@@ -47,7 +47,7 @@ const Hero = () => {
 					</button>
 					<button
 						type="button"
-						className="flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-100 transition-all text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-light tracking-tight border border-gray-300 px-4 sm:px-6 md:px-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+						className="cursor-pointer flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-100 transition-all text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-light tracking-tight border border-gray-300 px-4 sm:px-6 md:px-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
 						aria-label="Contact us"
 					>
 						Contact Us

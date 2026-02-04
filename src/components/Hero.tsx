@@ -23,7 +23,7 @@ const MockSidebar = () => {
 			<div className="flex-1 p-4 sm:p-6">
 				{/* Menu Items */}
 				<nav className="space-y-1 sm:space-y-2">
-					{menuItems.map((item, index) => (
+					{menuItems.map((item) => (
 						<div
 							key={item.label}
 							className={`flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition-colors ${

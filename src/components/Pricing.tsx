@@ -6,14 +6,14 @@ const Pricing = () => {
 	return (
 		<section
 			id="pricing"
-			className="relative w-full min-h-screen py-16 lg:py-0 lg:h-screen bg-white flex flex-col justify-center overflow-hidden"
+			className="relative w-full min-h-screen py-16 xl:py-0 xl:h-screen bg-white flex flex-col justify-center overflow-hidden"
 		>
 			<div className="max-w-7xl mx-auto w-full px-6">
 				{/* Title */}
 				<h2 className="section-title mb-8 lg:mb-16">Subscription</h2>
 
 				{/* Pricing Cards */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 lg:mb-8">
 					{pricingTiers.map((tier) => (
 						<PricingCard
 							key={tier.id}
@@ -24,11 +24,36 @@ const Pricing = () => {
 							isPopular={tier.isPopular}
 						/>
 					))}
+
+					{/* Custom Card - Inside grid on md, separate on lg */}
+					<div className="hidden md:block lg:hidden">
+						<div className="bg-gray-50 border border-gray-100 rounded-3xl p-4 h-full">
+							<div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col justify-between h-full gap-6">
+								<div className="flex flex-col justify-between items-start space-y-4">
+									<p className="text-gray-400 text-sm">Not enough?</p>
+									<h3 className="text-3xl font-light">Custom</h3>
+									<p className="text-gray-600 text-base">
+										Is there something missing? Book a call and we'll tailor the
+										dashboard to your needs.
+									</p>
+								</div>
+								<button
+									type="button"
+									className="cursor-pointer bg-black text-white p-4 rounded-xl flex items-center justify-between gap-6 hover:bg-gray-900 transition-all group shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+									aria-label="Book a call for custom pricing"
+								>
+									<span className="text-md font-medium">Book a call</span>
+									<div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+										<ArrowRight className="w-4 h-4 text-black" />
+									</div>
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 
-				{/* Custom Section - Outer Card */}
-				<div className="bg-gray-50 border border-gray-100 rounded-3xl p-4 lg:p-6">
-					{/* Inner Card */}
+				{/* Custom Section - Visible on mobile and lg+ */}
+				<div className="md:hidden lg:block bg-gray-50 border border-gray-100 rounded-3xl p-4 lg:p-6">
 					<div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-8">
 						<div className="flex flex-col justify-between items-start space-y-4 max-w-2xl">
 							<p className="text-gray-400 text-sm">Not enough?</p>
@@ -46,7 +71,7 @@ const Pricing = () => {
 							<span className="text-md lg:text-base font-medium">
 								Book a call
 							</span>
-							<div className="w-8 h-8 bg-white rounded-full flex items-center justify-center ">
+							<div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
 								<ArrowRight className="w-4 h-4 text-black" />
 							</div>
 						</button>

@@ -10,7 +10,7 @@ const LearnPlatform = () => {
 	};
 
 	return (
-		<section className="relative w-full min-h-screen py-16 lg:py-0 lg:h-screen flex flex-col justify-center overflow-hidden">
+		<section className="relative w-full min-h-screen py-16 xl:py-0 xl:h-screen flex flex-col justify-center overflow-hidden">
 			<div className="max-w-[1280px] mx-auto px-6">
 				<div className="flex flex-col gap-8 lg:gap-16">
 					{/* Header + Video Row */}

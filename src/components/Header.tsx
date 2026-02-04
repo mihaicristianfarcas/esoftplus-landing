@@ -1,32 +1,18 @@
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
+import {
+	Drawer,
+	DrawerContent,
+	DrawerTrigger,
+	DrawerTitle,
+	DrawerClose,
+} from "@/components/ui/drawer";
 
 const Header = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const menuRef = useRef<HTMLDivElement>(null);
-
-	// Focus first link when menu opens
-	useEffect(() => {
-		if (isMenuOpen && menuRef.current) {
-			const firstLink = menuRef.current.querySelector("a");
-			if (firstLink instanceof HTMLElement) {
-				firstLink.focus();
-			}
-		}
-	}, [isMenuOpen]);
-
-	// Handle Escape key to close menu
-	const handleKeyDown = (e: React.KeyboardEvent) => {
-		if (e.key === "Escape" && isMenuOpen) {
-			setIsMenuOpen(false);
-		}
-	};
-
 	return (
 		<header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:py-6">
-			<div className="max-w-full flex items-start justify-between">
+			<div className="max-w-full flex items-center justify-between">
 				{/* Logo */}
-				<div className="flex items-start align-top">
+				<div className="flex items-center">
 					<span className="text-2xl lg:text-3xl font-medium tracking-tight">
 						Esoftplus
 						<span className="text-[10px] font-light align-text-top">®</span>
@@ -68,70 +54,74 @@ const Header = () => {
 					</a>
 				</div>
 
-				{/* Mobile Menu Button */}
-				<button
-					type="button"
-					className="cursor-pointer lg:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-md"
-					onClick={() => setIsMenuOpen(!isMenuOpen)}
-					onKeyDown={handleKeyDown}
-					aria-expanded={isMenuOpen}
-					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-					aria-controls="mobile-menu"
-				>
-					{isMenuOpen ? (
-						<X className="h-6 w-6" />
-					) : (
-						<Menu className="h-6 w-6" />
-					)}
-				</button>
-			</div>
+				{/* Mobile Menu - Drawer */}
+				<Drawer>
+					<DrawerTrigger asChild>
+						<button
+							type="button"
+							className="lg:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-md"
+							aria-label="Open menu"
+						>
+							{/* Modern 2-bar menu icon */}
+							<div className="flex flex-col gap-1.5 w-6">
+								<span className="block h-0.5 w-6 bg-black rounded-full" />
+								<span className="block h-0.5 w-4 bg-black rounded-full ml-auto" />
+							</div>
+						</button>
+					</DrawerTrigger>
+					<DrawerContent className="bg-white px-6 pb-8">
+						<DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
 
-			{/* Mobile Navigation Dropdown */}
-			{isMenuOpen && (
-				<div
-					ref={menuRef}
-					id="mobile-menu"
-					className="lg:hidden absolute top-16 left-0 right-0 border-t bg-white border-gray-100 p-6 flex flex-col gap-6 shadow-xl"
-				>
-					<nav className="flex flex-col gap-4">
-						<a
-							href="#home"
-							className="text-sm font-light"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Home
-						</a>
-						<a
-							href="#contact"
-							className="text-sm font-light"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Contact Us
-						</a>
-						<a
-							href="#pricing"
-							className="text-sm font-light"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Pricing
-						</a>
-					</nav>
-					<div className="flex flex-col gap-2 pt-4 border-t border-gray-100">
-						<span className="text-xs font-light text-gray-400 uppercase tracking-widest">
-							Built On
-						</span>
-						<span className="text-sm font-light">WME Enterprise</span>
-					</div>
-					<a
-						href="#demo"
-						className="flex items-center justify-between bg-black text-white px-6 py-3 rounded-full"
-						onClick={() => setIsMenuOpen(false)}
-					>
-						Try Demo
-						<ArrowUpRight className="h-5 w-5" />
-					</a>
-				</div>
-			)}
+						{/* Nav Links */}
+						<nav className="flex flex-col gap-5">
+							<DrawerClose asChild>
+								<a
+									href="#home"
+									className="text-2xl font-light hover:text-gray-600 transition-colors"
+								>
+									Home
+								</a>
+							</DrawerClose>
+							<DrawerClose asChild>
+								<a
+									href="#contact"
+									className="text-2xl font-light hover:text-gray-600 transition-colors"
+								>
+									Contact Us
+								</a>
+							</DrawerClose>
+							<DrawerClose asChild>
+								<a
+									href="#pricing"
+									className="text-2xl font-light hover:text-gray-600 transition-colors"
+								>
+									Pricing
+								</a>
+							</DrawerClose>
+						</nav>
+
+						{/* Bottom Section */}
+						<div className="flex flex-col gap-5 mt-8">
+							<div className="flex flex-col gap-1 pt-5 border-t border-gray-200">
+								<span className="text-xs font-light text-gray-400 uppercase tracking-widest">
+									Built On
+								</span>
+								<span className="text-base font-light">WME Enterprise</span>
+							</div>
+
+							<DrawerClose asChild>
+								<a
+									href="#demo"
+									className="flex items-center justify-between bg-black text-white px-6 py-4 rounded-full hover:bg-gray-800 transition-colors"
+								>
+									<span className="text-lg">Try Demo</span>
+									<ArrowUpRight className="h-5 w-5" />
+								</a>
+							</DrawerClose>
+						</div>
+					</DrawerContent>
+				</Drawer>
+			</div>
 		</header>
 	);
 };

@@ -7,9 +7,9 @@ const Footer = () => {
 			<div className="bg-black rounded-3xl overflow-hidden flex flex-col justify-between">
 				{/* Main content area */}
 				<div className="w-full p-6 md:p-10">
-					<div className="flex flex-col lg:flex-row items-start justify-between">
+					<div className="flex flex-col xl:flex-row items-start justify-between">
 						{/* Left side - Heading + Email */}
-						<div className="flex flex-col w-full lg:w-[50%]">
+						<div className="flex flex-col w-full xl:w-[50%]">
 							<div className="flex flex-col gap-4 md:gap-6">
 								<h2 className="text-5xl md:text-7xl lg:text-8xl font-light leading-tight tracking-tighter text-white whitespace-nowrap">
 									Mobilize Your ERP
@@ -41,7 +41,7 @@ const Footer = () => {
 						</div>
 
 						{/* Right side - Navigation links */}
-						<div className="flex flex-wrap items-start justify-between flex-row gap-2 sm:gap-10 md:gap-30 lg:gap-40 mt-10 lg:mt-0 w-full lg:w-auto">
+						<div className="flex flex-wrap items-start justify-between flex-row gap-6 sm:gap-10 md:gap-16 lg:gap-20 xl:gap-32 mt-10 xl:mt-0 w-full xl:w-auto">
 							<div className="flex flex-col md:gap-1">
 								<span className="text-gray-500 text-xl font-light">Legal</span>
 								<a

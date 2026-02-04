@@ -16,19 +16,19 @@ const Hero = () => {
 			/>
 
 			{/* Hero Content */}
-			<div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-24 sm:pb-28 md:pb-32 text-center">
+			<div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 lg:pt-28 xl:pt-32 pb-24 sm:pb-28 md:pb-32 text-center">
 				{/* Top Text */}
 				<p className="text-gray-400 mb-3 md:mb-4 text-sm sm:text-base md:text-lg lg:text-xl animate-fade-in">
 					Unlock full potential.
 				</p>
 
 				{/* Main Heading */}
-				<h1 className="hero-title mb-6 sm:mb-10 md:mb-14 lg:mb-20 xl:mb-28 tracking-tighter">
+				<h1 className="hero-title mb-6 sm:mb-10 md:mb-14 lg:mb-16 xl:mb-28 tracking-tighter">
 					Mobilize Your ERP
 				</h1>
 
 				{/* CTA Buttons */}
-				<div className="grid grid-cols-1 grid-flow-col auto-cols-fr gap-2 sm:gap-4 lg:gap-6 mb-8 sm:mb-12 md:mb-14 lg:mb-16">
+				<div className="grid grid-cols-1 grid-flow-col auto-cols-fr gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-8 md:mb-10 lg:mb-12">
 					<button
 						type="button"
 						className="cursor-pointer flex items-center justify-center bg-black text-white gap-2 sm:gap-4 md:gap-6 pl-1 sm:pl-1.5 pr-4 sm:pr-6 md:pr-8 py-1 sm:py-1.5 rounded-full hover:bg-gray-800 transition-all text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap font-light tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
@@ -88,7 +88,7 @@ const Hero = () => {
 				</div>
 
 				{/* Center - Description */}
-				<div className="hidden md:block flex-1 max-w-lg lg:max-w-2xl text-center mx-4 lg:mx-8">
+				<div className="hidden md:block flex-1 max-w-xl xl:max-w-2xl text-center mx-4 lg:mx-6 xl:mx-8">
 					<p className="text-gray-400 font-light text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed">
 						Unlock instant analytics and reporting for your WMEnterprise data.
 						<br className="hidden lg:block" /> No setup headaches, just powerful

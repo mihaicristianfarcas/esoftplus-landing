@@ -25,17 +25,17 @@ const FeatureTagCard = ({
 		>
 			<div className="h-full flex flex-col justify-between min-h-0">
 				{/* Header section - horizontal layout in landscape */}
-				<div className="landscape-header flex flex-col justify-start gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 flex-1 min-h-0">
+				<div className="landscape-header flex flex-col justify-start gap-1 xs:gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 flex-1 min-h-0">
 					{/* Title section - left side in landscape */}
 					<div className="landscape-title-section">
 						<p
-							className={`text-xs xs:text-sm sm:text-base md:text-lg ${isDark ? "text-gray-400" : "text-gray-600"}`}
+							className={`card-subtitle ${isDark ? "card-subtitle-dark" : "card-subtitle-light"}`}
 						>
 							{subtitle}
 						</p>
 
 						<h2
-							className={`font-semibold leading-tight text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1 xs:mb-1.5 sm:mb-2 md:mb-3 lg:mb-4 ${isDark ? "text-white" : "text-black"}`}
+							className={`feature-card-title ${isDark ? "feature-card-title-dark" : "feature-card-title-light"}`}
 						>
 							{title}
 						</h2>
@@ -55,8 +55,8 @@ const FeatureTagCard = ({
 											key={feature}
 											className={
 												feature === "& More"
-													? `feature-badge-muted text-[9px] xs:text-[10px] sm:text-xs lg:text-sm py-1 px-2 xs:py-1.5 xs:px-2.5 sm:py-2 sm:px-4`
-													: `feature-badge text-[9px] xs:text-[10px] sm:text-xs lg:text-sm py-1 px-2 xs:py-1.5 xs:px-2.5 sm:py-2 sm:px-4`
+													? `cursor-pointer feature-badge-muted text-[9px] xs:text-[10px] sm:text-xs lg:text-sm py-1 px-2 xs:py-1.5 xs:px-2.5 sm:py-2 sm:px-4`
+													: `cursor-pointer feature-badge text-[9px] xs:text-[10px] sm:text-xs lg:text-sm py-1 px-2 xs:py-1.5 xs:px-2.5 sm:py-2 sm:px-4`
 											}
 										>
 											{feature}
@@ -69,7 +69,7 @@ const FeatureTagCard = ({
 				</div>
 				<button
 					type="button"
-					className="btn-full-width mt-1 xs:mt-1.5 sm:mt-2 shrink-0 py-2 xs:py-2.5 sm:py-3"
+					className="cursor-pointer btn-full-width mt-1 xs:mt-1.5 sm:mt-2 shrink-0 py-1 xs:py-1.5 sm:py-2"
 				>
 					<span className="text-[10px] xs:text-xs sm:text-sm lg:text-lg pl-1.5 sm:pl-2 font-medium">
 						{buttonText}

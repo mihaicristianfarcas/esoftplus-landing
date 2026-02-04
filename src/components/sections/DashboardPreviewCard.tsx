@@ -32,18 +32,16 @@ const DashboardPreviewCard = ({
 
 				{/* Content section - left side in landscape */}
 				<div className="landscape-content h-full flex flex-col justify-between relative z-10 min-h-0">
-					<p className="text-gray-400 text-xs xs:text-sm sm:text-base md:text-lg mb-0.5 xs:mb-1 sm:mb-2">
-						Customise
-					</p>
+					<p className="card-subtitle card-subtitle-light">Customise</p>
 
-					<h2 className="text-black font-semibold leading-tight text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1.5 xs:mb-2 sm:mb-3 md:mb-4">
+					<h2 className="feature-card-title feature-card-title-light">
 						Custom Dashboards, tailored for your requirements.
 					</h2>
 
 					<div className="relative flex-1 flex flex-col mb-2 xs:mb-3 sm:mb-4 min-h-0 landscape-stats-section">
 						<button
 							type="button"
-							className="absolute top-0 right-0 text-gray-400 hover:text-gray-600 transition-colors z-10 landscape-hidden"
+							className="cursor-pointer absolute top-0 right-0 text-gray-400 hover:text-gray-600 transition-colors z-10 landscape-hidden"
 							aria-label="Maximize"
 						>
 							<Maximize2 className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
@@ -78,7 +76,7 @@ const DashboardPreviewCard = ({
 						</div>
 					</div>
 
-					<p className="text-gray-400 text-[10px] xs:text-[11px] sm:text-xs md:text-sm lg:text-lg xl:text-xl leading-relaxed max-w-xl">
+					<p className="card-description card-description-light">
 						Some text here explaining what this feature does. Preferably 2-3
 						rows max. This is how it would look with 3 rows for now.
 					</p>
@@ -104,11 +102,9 @@ const DashboardPreviewCard = ({
 			{/* Content section - left side in landscape */}
 			<div className="landscape-content h-full flex flex-col justify-between">
 				<div>
-					<p className="text-gray-500 text-xs xs:text-sm sm:text-base md:text-lg mb-2.5 xs:mb-3 sm:mb-4 md:mb-5">
-						Customise
-					</p>
+					<p className="card-subtitle card-subtitle-dark">Customise</p>
 
-					<h2 className="text-white font-semibold leading-tight max-w-2xl text-base xs:text-lg sm:text-xl md:text-2xl lg:text-2xl mb-2 xs:mb-3 sm:mb-4 md:mb-5 lg:mb-8">
+					<h2 className="feature-card-title feature-card-title-dark max-w-2xl">
 						Custom Dashboards, tailored for your requirements.
 					</h2>
 				</div>
@@ -122,7 +118,7 @@ const DashboardPreviewCard = ({
 					/>
 				</div>
 
-				<p className="text-gray-400 text-[10px] xs:text-[11px] sm:text-xs md:text-sm lg:text-lg xl:text-xl leading-relaxed max-w-xl">
+				<p className="card-description card-description-dark">
 					Some text here explaining what this feature does. Preferably 2-3 rows
 					max. This is how it would look with 3 rows for now.
 				</p>

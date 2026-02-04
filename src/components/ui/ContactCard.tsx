@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import { memo } from "react";
-import SendIcon from "../../assets/send-paper-plane.svg";
 import SendUsAMessage from "../SendUsAMessage";
 
 interface ContactCardProps {
@@ -16,7 +15,6 @@ const ContactCard = memo(
 		title = "Need Clarification?",
 		description = "Book a call or message us at any time.",
 		buttonText = "Book a call",
-		email = "support@esoftplus.com",
 		className = "",
 	}: ContactCardProps) => {
 		return (

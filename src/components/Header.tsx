@@ -10,7 +10,7 @@ import {
 const Header = () => {
 	return (
 		<header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:py-6">
-			<div className="max-w-full flex items-center justify-between">
+			<div className="max-w-full flex items-start justify-between">
 				{/* Logo */}
 				<div className="flex items-center">
 					<span className="text-2xl lg:text-3xl font-medium tracking-tight">

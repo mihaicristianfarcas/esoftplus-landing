@@ -4,118 +4,133 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import chartsImage from "../assets/hero-dashboard-preview-charts.png";
 import sidebarImage from "../assets/hero-dashboard-preview-with-sidebar.png";
 import backgroundPattern from "../assets/gradient-hero.png";
+import sidebarOnlyImage from "../assets/sidebar.jpeg";
 
-// Mock Sidebar Component - represents the sidebar-only view
-const MockSidebar = () => {
-	const menuItems = [
-		{ icon: "⚙️", label: "General", active: true },
-		{ icon: "🍽️", label: "Restaurant", active: false },
-		{ icon: "📦", label: "Articole", active: false },
-		{ icon: "🤝", label: "Parteneri", active: false },
-		{ icon: "📊", label: "Analiza", active: false },
-		{ icon: "🏭", label: "WMS", active: false },
-		{ icon: "📥", label: "Importuri", active: false },
-	];
+// SVG Tooltip connector component - renders circle + dashed path
+interface TooltipConnectorProps {
+	direction: "right-1" | "right-2" | "left" | "down-left" | "down-right";
+	lineLength?: number;
+	verticalLength?: number;
+}
+
+const TooltipConnector = ({
+	direction,
+	lineLength = 150,
+	verticalLength = 50,
+}: TooltipConnectorProps) => {
+	const CIRCLE_RADIUS = 9;
+	const STROKE_WIDTH = 2;
+	const PADDING = STROKE_WIDTH; // Padding to prevent stroke clipping
+	const CORNER_RADIUS = 10;
+	const STROKE_COLOR = "#D1D5DB"; // gray-300
+
+	// Calculate SVG dimensions based on direction (with padding for stroke)
+	const getDimensions = () => {
+		switch (direction) {
+			case "right-1":
+				return {
+					width: lineLength + CIRCLE_RADIUS * 2 + PADDING * 2,
+					height: CIRCLE_RADIUS * 2 + PADDING * 2,
+				};
+			case "right-2":
+			case "left":
+				return {
+					width: lineLength + CIRCLE_RADIUS * 2 + PADDING * 2,
+					height: CIRCLE_RADIUS * 2 + PADDING * 2,
+				};
+			case "down-left":
+				return {
+					width: lineLength + CIRCLE_RADIUS * 2 + PADDING * 2,
+					height: verticalLength + CIRCLE_RADIUS * 2 + PADDING * 2,
+				};
+			case "down-right":
+				return {
+					width: lineLength + CIRCLE_RADIUS * 2 + PADDING * 2,
+					height: verticalLength + CIRCLE_RADIUS * 2 + PADDING * 2,
+				};
+		}
+	};
+
+	const getPath = () => {
+		const dims = getDimensions();
+		const startX = CIRCLE_RADIUS + PADDING;
+		const endX = dims.width - CIRCLE_RADIUS - PADDING;
+		const centerY = dims.height / 2;
+		const topY = CIRCLE_RADIUS + PADDING;
+		const bottomY = dims.height - CIRCLE_RADIUS - PADDING;
+
+		switch (direction) {
+			case "right-1":
+			case "right-2":
+				// Circle on left, line goes right to text
+				return `M ${startX} ${centerY} H ${endX}`;
+			case "left":
+				// Circle on right, line goes left to text
+				return `M ${endX} ${centerY} H ${startX}`;
+			case "down-left":
+				// Circle at TOP-RIGHT, path goes: down from circle -> corner -> left to text
+				return `M ${endX} ${topY}
+						V ${bottomY - CORNER_RADIUS}
+						Q ${endX} ${bottomY}, ${endX - CORNER_RADIUS} ${bottomY}
+						H ${startX}`;
+			case "down-right":
+				// Circle at TOP-LEFT, path goes: down from circle -> corner -> right to text
+				return `M ${startX} ${topY}
+						V ${bottomY - CORNER_RADIUS}
+						Q ${startX} ${bottomY}, ${startX + CORNER_RADIUS} ${bottomY}
+						H ${endX}`;
+		}
+	};
+
+	const getCirclePosition = () => {
+		const dims = getDimensions();
+		const startX = CIRCLE_RADIUS + PADDING;
+		const endX = dims.width - CIRCLE_RADIUS - PADDING;
+		const centerY = dims.height / 2;
+		const topY = CIRCLE_RADIUS + PADDING;
+
+		switch (direction) {
+			case "right-1":
+			case "right-2":
+				return { cx: startX, cy: centerY };
+			case "left":
+				return { cx: endX, cy: centerY };
+			case "down-left":
+				return { cx: endX, cy: topY };
+			case "down-right":
+				return { cx: startX, cy: topY };
+		}
+	};
+
+	const dims = getDimensions();
+	const circlePos = getCirclePosition();
 
 	return (
-		<div className="w-full h-full bg-[#1a1a2e] rounded-2xl overflow-hidden flex flex-col shadow-2xl">
-			{/* Sidebar Content */}
-			<div className="flex-1 p-4 sm:p-6">
-				{/* Menu Items */}
-				<nav className="space-y-1 sm:space-y-2">
-					{menuItems.map((item) => (
-						<div
-							key={item.label}
-							className={`flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition-colors ${
-								item.active
-									? "bg-[#2d2d4a] text-white"
-									: "text-gray-400 hover:bg-[#2d2d4a]/50"
-							}`}
-						>
-							<span className="text-base sm:text-lg">{item.icon}</span>
-							<span className="text-sm sm:text-base font-light">
-								{item.label}
-							</span>
-							<svg
-								className="w-4 h-4 ml-auto text-gray-500"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-								aria-label="Arrow Right"
-								aria-labelledby="Arrow Right"
-								role="img"
-							>
-								<title id="Arrow Right">Arrow Right</title>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M9 5l7 7-7 7"
-								/>
-							</svg>
-						</div>
-					))}
-				</nav>
-
-				{/* Divider */}
-				<div className="my-4 sm:my-6 border-t border-gray-700" />
-
-				{/* Additional Items */}
-				<div className="space-y-1 sm:space-y-2">
-					<div className="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 text-gray-400">
-						<span className="text-base sm:text-lg">📈</span>
-						<span className="text-sm sm:text-base font-light">
-							Analiza AGENTI
-						</span>
-					</div>
-					<div className="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 text-gray-400">
-						<span className="text-base sm:text-lg">📋</span>
-						<span className="text-sm sm:text-base font-light">
-							Creaza Dashboard
-						</span>
-					</div>
-				</div>
-			</div>
-
-			{/* Bottom Section */}
-			<div className="p-4 sm:p-6 border-t border-gray-700">
-				{/* Cart Icon */}
-				<div className="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 text-gray-400 mb-4">
-					<span className="text-base sm:text-lg">🛒</span>
-					<span className="text-sm sm:text-base font-light">0</span>
-				</div>
-
-				{/* User Profile */}
-				<div className="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-[#2d2d4a] rounded-lg">
-					<div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-xs sm:text-sm font-medium">
-						AD
-					</div>
-					<div className="flex-1 min-w-0">
-						<p className="text-white text-sm sm:text-base font-medium truncate">
-							Administrator
-						</p>
-						<p className="text-gray-400 text-xs sm:text-sm truncate">admin</p>
-					</div>
-					<svg
-						className="w-4 h-4 text-gray-500 shrink-0"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-						aria-label="Arrow Right"
-						aria-labelledby="Arrow Right"
-						role="img"
-					>
-						<title id="Arrow Right">Arrow Right</title>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M8 9l4-4 4 4m0 6l-4 4-4-4"
-						/>
-					</svg>
-				</div>
-			</div>
-		</div>
+		<svg
+			width={dims.width}
+			height={dims.height}
+			viewBox={`0 0 ${dims.width} ${dims.height}`}
+			className="shrink-0"
+			aria-hidden="true"
+		>
+			{/* Dashed line path */}
+			<path
+				d={getPath()}
+				fill="none"
+				stroke={STROKE_COLOR}
+				strokeWidth={STROKE_WIDTH}
+				strokeDasharray="8 6"
+			/>
+			{/* Circle at connection point */}
+			<circle
+				cx={circlePos.cx}
+				cy={circlePos.cy}
+				r={CIRCLE_RADIUS}
+				fill="white"
+				stroke={STROKE_COLOR}
+				strokeWidth={STROKE_WIDTH}
+			/>
+		</svg>
 	);
 };
 
@@ -130,13 +145,13 @@ const Hero = () => {
 		offset: ["start start", "end start"],
 	});
 
-	// ============ PHASE 1: Oval Expansion (0 - 0.25 of 500vh = 125vh of scroll) ============
+	// ============ PHASE 1: Oval Expansion ============
 	const ovalScaleX = useTransform(scrollYProgress, [0, 0.25], [1, 3]);
 	const ovalScaleY = useTransform(scrollYProgress, [0, 0.25], [1, 3.5]);
 	const borderRadius = useTransform(scrollYProgress, [0, 0.2], [200, 100]);
 	const ovalY = useTransform(scrollYProgress, [0, 0.25], ["0%", "-50%"]);
 
-	// Image crossfade (charts to sidebar+charts)
+	// Image crossfade
 	const chartsOpacity = useTransform(scrollYProgress, [0.05, 0.085], [1, 0]);
 	const sidebarImageOpacity = useTransform(
 		scrollYProgress,
@@ -147,8 +162,7 @@ const Hero = () => {
 	// Counter-scale for images
 	const imageCounterScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.9]);
 
-	// ============ PHASE 2: Transition to Sidebar Section (around 0.25) ============
-	// Fade out the entire oval section, fade in the sidebar section
+	// ============ PHASE 2: Transition ============
 	const ovalSectionOpacity = useTransform(scrollYProgress, [0.15, 0.2], [1, 0]);
 	const sidebarSectionOpacity = useTransform(
 		scrollYProgress,
@@ -156,14 +170,49 @@ const Hero = () => {
 		[0, 1],
 	);
 
-	// ============ PHASE 3: Scroll through Sidebar Section (0.28 - 1.0) ============
-	// The 300vh section needs to scroll as we continue scrolling
-	// We map the remaining scroll progress to scrolling through 200vh of content
-	// (300vh total - 100vh visible = 200vh to scroll through)
+	// ============ PHASE 3: Scroll through Sidebar Section ============
 	const sidebarSectionY = useTransform(
 		scrollYProgress,
 		[0.2, 1.0],
-		["0vh", "-100vh"],
+		["0vh", "-200vh"],
+	);
+
+	// ============ TOOLTIP CLIP-PATH ANIMATIONS ============
+	// REVERSED direction: reveals FROM the circle (sidebar edge) OUTWARD to text
+
+	// Tooltip 1: "Keep track of the most important data" - RIGHT of General
+	const tooltip1ClipProgress = useTransform(
+		scrollYProgress,
+		[0.22, 0.26],
+		[100, 0],
+	);
+
+	// Tooltip 2: "Manage everything" - LEFT of Restaurant
+	const tooltip2ClipProgress = useTransform(
+		scrollYProgress,
+		[0.26, 0.3],
+		[100, 0],
+	);
+
+	// Tooltip 3: "Full Stock overview" - RIGHT of Articole
+	const tooltip3ClipProgress = useTransform(
+		scrollYProgress,
+		[0.28, 0.32],
+		[100, 0],
+	);
+
+	// Tooltip 4: "Custom dashboard" - DOWN-LEFT of Creaza Dashboard
+	const tooltip4ClipProgress = useTransform(
+		scrollYProgress,
+		[0.3, 0.34],
+		[100, 0],
+	);
+
+	// Tooltip 5: "Manage your account with ease" - DOWN-RIGHT of Administrator
+	const tooltip5ClipProgress = useTransform(
+		scrollYProgress,
+		[0.34, 0.38],
+		[100, 0],
 	);
 
 	return (
@@ -229,7 +278,7 @@ const Hero = () => {
 							</div>
 
 							{/* Dashboard Image Container - Animated Oval */}
-							<div className="relative w-[92%] sm:w-[90%] md:w-[88%] lg:w-[85%] max-w-5xl mx-auto">
+							<div className="hero-oval-container relative w-[92%] sm:w-[90%] md:w-[88%] lg:w-[85%] max-w-5xl mx-auto">
 								<motion.div
 									ref={ovalContainerRef}
 									className="relative w-full bg-[#F0F0F0] overflow-hidden rounded-[200px] z-30 origin-center"
@@ -288,7 +337,7 @@ const Hero = () => {
 										}}
 									>
 										<div
-											className="w-[48%]"
+											className="w-[60%]"
 											style={{
 												filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.3))",
 											}}
@@ -297,6 +346,10 @@ const Hero = () => {
 												src={sidebarImage}
 												alt="Dashboard with Sidebar Preview"
 												className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
+												style={{
+													transform: "scaleY(0.9)",
+													transformOrigin: "top",
+												}}
 											/>
 										</div>
 									</motion.div>
@@ -313,7 +366,7 @@ const Hero = () => {
 							</div>
 
 							{/* Center - Description */}
-							<div className="hidden md:block flex-1 max-w-xl xl:max-w-2xl text-center mx-4 lg:mx-6 xl:mx-8">
+							<div className="hidden lg:block flex-1 max-w-xl xl:max-w-2xl text-center mx-4 lg:mx-6 xl:mx-8">
 								<p className="text-gray-400 font-light text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed">
 									Unlock instant analytics and reporting for your WMEnterprise
 									data.
@@ -336,40 +389,151 @@ const Hero = () => {
 
 					{/* ===== Sidebar Section (fades in and scrolls) ===== */}
 					<motion.div
-						className="absolute inset-x-0 w-full h-[200vh] pointer-events-none"
+						className="absolute inset-x-0 w-full h-[300vh] pointer-events-none"
 						style={{
 							opacity: sidebarSectionOpacity,
 							y: sidebarSectionY,
 							top: 0,
 						}}
 					>
-						{/* Gradient Background: Gray (#F0F0F0) at top to White (#FFFFFF) at bottom */}
+						{/* Gradient Background */}
 						<div
 							className="absolute inset-0 w-full h-full"
 							style={{
 								background:
-									"linear-gradient(to bottom, #F0F0F0 0%, #FFFFFF 80%)",
+									"linear-gradient(to bottom, #F0F0F0 0%, #FFFFFF 90%)",
 							}}
 						/>
 
-						{/* Sidebar Container - 1/3 vw wide, centered, ~240vh tall */}
+						{/* Main positioning container - this is the reference for tooltip positioning */}
 						<div
 							className="absolute left-1/2 -translate-x-1/2 pointer-events-auto"
 							style={{
-								width: "33.333vw",
-								minWidth: "280px",
-								maxWidth: "450px",
-								top: "20%", // 10% of 300vh = 30vh from top
-								height: "50%", // 80% of 300vh = 240vh
+								width: "40vw",
+								minWidth: "320px",
+								maxWidth: "500px",
+								top: "10%",
 							}}
 						>
-							<div
-								className="w-full h-full"
-								style={{
-									filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.25))",
-								}}
-							>
-								<MockSidebar />
+							{/* Wrapper with overflow-visible for tooltips */}
+							<div className="relative">
+								{/* Outer card container with gray border */}
+								<div className="bg-gray-50 border border-gray-200 rounded-[50px] p-5 sm:p-7.5">
+									{/* Inner container with sidebar image */}
+									<div className="bg-white border border-gray-100 rounded-[40px] overflow-hidden">
+										<img
+											src={sidebarOnlyImage}
+											alt="Sidebar Preview"
+											className="w-full h-auto rounded-[40px]"
+										/>
+									</div>
+								</div>
+
+								{/* ===== TOOLTIPS - Positioned OUTSIDE the card ===== */}
+
+								{/* Tooltip 1: "Keep track of the most important data" - RIGHT of General */}
+								{/* General button is at ~19% from top of the outer card */}
+								<motion.div
+									className="absolute hidden md:flex items-center pointer-events-none z-10"
+									style={{
+										top: "15.2%",
+										left: "calc(100% - 35px)",
+										clipPath: useTransform(
+											tooltip1ClipProgress,
+											(v) => `inset(0 ${v}% 0 0)`,
+										),
+									}}
+								>
+									<TooltipConnector direction="right-1" lineLength={220} />
+									<span className="text-gray-400 font-semibold whitespace-nowrap text-xl lg:text-3xl leading-tight ml-4">
+										Keep track of the most <br /> important data
+									</span>
+								</motion.div>
+
+								{/* Tooltip 2: "Manage everything" - LEFT of Restaurant */}
+								{/* Restaurant button is at ~26% from top of the outer card */}
+								<motion.div
+									className="absolute hidden md:flex items-center pointer-events-none z-10"
+									style={{
+										top: "19.8%",
+										right: "calc(100% - 35px)",
+										clipPath: useTransform(
+											tooltip2ClipProgress,
+											(v) => `inset(0 0 0 ${v}%)`,
+										),
+									}}
+								>
+									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4">
+										Manage everything
+									</span>
+									<TooltipConnector direction="left" lineLength={120} />
+								</motion.div>
+
+								{/* Tooltip 3: "Full Stock overview" - RIGHT of Articole */}
+								{/* Articole button is at ~33% from top of the outer card */}
+								<motion.div
+									className="absolute hidden md:flex items-center pointer-events-none z-10"
+									style={{
+										top: "23.5%",
+										left: "calc(100% - 35px)",
+										clipPath: useTransform(
+											tooltip3ClipProgress,
+											(v) => `inset(0 ${v}% 0 0)`,
+										),
+									}}
+								>
+									<TooltipConnector direction="right-2" lineLength={140} />
+									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap ml-4">
+										Full stock overview
+									</span>
+								</motion.div>
+
+								{/* Tooltip 4: "Custom dashboard" - UP-LEFT of Creaza Dashboard */}
+								{/* Circle near Creaza Dashboard, text extends left and down */}
+								<motion.div
+									className="absolute hidden md:flex items-end pointer-events-none z-10"
+									style={{
+										top: "48%",
+										right: "calc(100% - 78px)",
+										clipPath: useTransform(
+											tooltip4ClipProgress,
+											(v) => `inset(0 0 0 ${v}%)`,
+										),
+									}}
+								>
+									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4 mb-1">
+										Custom dashboard
+									</span>
+									<TooltipConnector
+										direction="down-left"
+										lineLength={200}
+										verticalLength={40}
+									/>
+								</motion.div>
+
+								{/* Tooltip 5: "Manage your account with ease" - DOWN-RIGHT of Administrator */}
+								{/* Administrator footer is at ~92% from top */}
+								<motion.div
+									className="absolute hidden md:flex items-end pointer-events-none z-10"
+									style={{
+										top: "97.7%",
+										left: "14%",
+										clipPath: useTransform(
+											tooltip5ClipProgress,
+											(v) => `inset(0 ${v}% 0 0)`,
+										),
+									}}
+								>
+									<TooltipConnector
+										direction="down-right"
+										lineLength={200}
+										verticalLength={90}
+									/>
+									<span className="text-gray-400 font-semibold text-2xl lg:text-4xl leading-tight whitespace-nowrap ml-4 mb-1">
+										Manage your
+										<br /> account with ease
+									</span>
+								</motion.div>
 							</div>
 						</div>
 					</motion.div>

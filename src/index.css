@@ -411,6 +411,12 @@ a,
 		display: none;
 	}
 
+	/* Hero oval container - smaller in landscape mobile */
+	div.hero-oval-container {
+		width: 60%;
+		max-width: 400px;
+	}
+
 	/* Feature card base adjustments for landscape */
 	.feature-card,
 	.feature-card-compact {

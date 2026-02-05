@@ -183,35 +183,35 @@ const Hero = () => {
 	// Tooltip 1: "Keep track of the most important data" - RIGHT of General
 	const tooltip1ClipProgress = useTransform(
 		scrollYProgress,
-		[0.22, 0.26],
+		[0.21, 0.26],
 		[100, 0],
 	);
 
 	// Tooltip 2: "Manage everything" - LEFT of Restaurant
 	const tooltip2ClipProgress = useTransform(
 		scrollYProgress,
-		[0.26, 0.3],
+		[0.25, 0.3],
 		[100, 0],
 	);
 
 	// Tooltip 3: "Full Stock overview" - RIGHT of Articole
 	const tooltip3ClipProgress = useTransform(
 		scrollYProgress,
-		[0.28, 0.32],
+		[0.29, 0.34],
 		[100, 0],
 	);
 
 	// Tooltip 4: "Custom dashboard" - DOWN-LEFT of Creaza Dashboard
 	const tooltip4ClipProgress = useTransform(
 		scrollYProgress,
-		[0.3, 0.34],
+		[0.36, 0.41],
 		[100, 0],
 	);
 
 	// Tooltip 5: "Manage your account with ease" - DOWN-RIGHT of Administrator
 	const tooltip5ClipProgress = useTransform(
 		scrollYProgress,
-		[0.34, 0.38],
+		[0.65, 0.7],
 		[100, 0],
 	);
 
@@ -434,9 +434,9 @@ const Hero = () => {
 								{/* Tooltip 1: "Keep track of the most important data" - RIGHT of General */}
 								{/* General button is at ~19% from top of the outer card */}
 								<motion.div
-									className="absolute hidden md:flex items-center pointer-events-none z-10"
+									className="absolute hidden md:flex flex-col pointer-events-none z-10"
 									style={{
-										top: "15.2%",
+										top: "16.1%",
 										left: "calc(100% - 35px)",
 										clipPath: useTransform(
 											tooltip1ClipProgress,
@@ -444,9 +444,17 @@ const Hero = () => {
 										),
 									}}
 								>
-									<TooltipConnector direction="right-1" lineLength={220} />
-									<span className="text-gray-400 font-semibold whitespace-nowrap text-xl lg:text-3xl leading-tight ml-4">
-										Keep track of the most <br /> important data
+									<div className="flex items-center">
+										<TooltipConnector direction="right-1" lineLength={220} />
+										<span className="text-gray-400 font-semibold whitespace-nowrap text-xl lg:text-3xl ml-4">
+											Keep track of the most
+										</span>
+									</div>
+									<span
+										className="text-gray-400 font-semibold whitespace-nowrap text-xl lg:text-3xl"
+										style={{ marginLeft: "calc(242px + 1rem)" }}
+									>
+										important data
 									</span>
 								</motion.div>
 
@@ -501,7 +509,7 @@ const Hero = () => {
 										),
 									}}
 								>
-									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4 mb-1">
+									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4 -mb-1">
 										Custom dashboard
 									</span>
 									<TooltipConnector
@@ -514,7 +522,7 @@ const Hero = () => {
 								{/* Tooltip 5: "Manage your account with ease" - DOWN-RIGHT of Administrator */}
 								{/* Administrator footer is at ~92% from top */}
 								<motion.div
-									className="absolute hidden md:flex items-end pointer-events-none z-10"
+									className="absolute hidden md:flex flex-col pointer-events-none z-10"
 									style={{
 										top: "97.7%",
 										left: "14%",
@@ -524,14 +532,21 @@ const Hero = () => {
 										),
 									}}
 								>
-									<TooltipConnector
-										direction="down-right"
-										lineLength={200}
-										verticalLength={90}
-									/>
-									<span className="text-gray-400 font-semibold text-2xl lg:text-4xl leading-tight whitespace-nowrap ml-4 mb-1">
-										Manage your
-										<br /> account with ease
+									<div className="flex items-end">
+										<TooltipConnector
+											direction="down-right"
+											lineLength={200}
+											verticalLength={90}
+										/>
+										<span className="text-gray-400 font-semibold text-2xl lg:text-4xl whitespace-nowrap ml-4 -mb-1">
+											Manage your
+										</span>
+									</div>
+									<span
+										className="text-gray-400 font-semibold text-2xl lg:text-4xl whitespace-nowrap"
+										style={{ marginLeft: "calc(222px + 1rem)" }}
+									>
+										account with ease
 									</span>
 								</motion.div>
 							</div>

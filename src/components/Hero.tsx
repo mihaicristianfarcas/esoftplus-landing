@@ -446,12 +446,12 @@ const Hero = () => {
 								>
 									<div className="flex items-center">
 										<TooltipConnector direction="right-1" lineLength={220} />
-										<span className="text-gray-400 font-semibold whitespace-nowrap text-xl lg:text-3xl ml-4">
+										<span className="text-[#B3B3B3] font-semibold whitespace-nowrap text-xl lg:text-3xl ml-4">
 											Keep track of the most
 										</span>
 									</div>
 									<span
-										className="text-gray-400 font-semibold whitespace-nowrap text-xl lg:text-3xl"
+										className="text-[#B3B3B3] font-semibold whitespace-nowrap text-xl lg:text-3xl"
 										style={{ marginLeft: "calc(242px + 1rem)" }}
 									>
 										important data
@@ -471,7 +471,7 @@ const Hero = () => {
 										),
 									}}
 								>
-									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4">
+									<span className="text-[#B3B3B3] font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4">
 										Manage everything
 									</span>
 									<TooltipConnector direction="left" lineLength={120} />
@@ -491,7 +491,7 @@ const Hero = () => {
 									}}
 								>
 									<TooltipConnector direction="right-2" lineLength={140} />
-									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap ml-4">
+									<span className="text-[#B3B3B3] font-semibold text-xl lg:text-3xl whitespace-nowrap ml-4">
 										Full stock overview
 									</span>
 								</motion.div>
@@ -509,7 +509,7 @@ const Hero = () => {
 										),
 									}}
 								>
-									<span className="text-gray-400 font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4 -mb-1">
+									<span className="text-[#B3B3B3] font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4 -mb-1">
 										Custom dashboard
 									</span>
 									<TooltipConnector
@@ -538,12 +538,12 @@ const Hero = () => {
 											lineLength={200}
 											verticalLength={90}
 										/>
-										<span className="text-gray-400 font-semibold text-2xl lg:text-4xl whitespace-nowrap ml-4 -mb-1">
+										<span className="text-[#B3B3B3] font-semibold text-2xl lg:text-4xl whitespace-nowrap ml-4 -mb-1">
 											Manage your
 										</span>
 									</div>
 									<span
-										className="text-gray-400 font-semibold text-2xl lg:text-4xl whitespace-nowrap"
+										className="text-[#B3B3B3] font-semibold text-2xl lg:text-4xl whitespace-nowrap"
 										style={{ marginLeft: "calc(222px + 1rem)" }}
 									>
 										account with ease

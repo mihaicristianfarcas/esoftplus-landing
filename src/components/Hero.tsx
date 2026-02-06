@@ -195,7 +195,7 @@ const Hero = () => {
 		const imageX =
 			progress < 0.25
 				? interpolate(progress, [0.05, 0.25], [-6.5, 20])
-				: interpolate(progress, [0.25, 0.5], [20, 44]);
+				: interpolate(progress, [0.25, 0.5], [20, 43.5]);
 		style.setProperty("--image-x", `${imageX}%`);
 
 		// Phase 3: Sidebar scroll (0.5 -> 1.0)

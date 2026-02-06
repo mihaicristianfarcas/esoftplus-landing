@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
 import { ArrowUpRight, Hexagon } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import chartsImage from "../assets/hero-dashboard-preview-charts.png";
-import sidebarImage from "../assets/hero-dashboard-preview-with-sidebar.png";
+import dashboardImage from "../assets/dashboard.jpg";
 import backgroundPattern from "../assets/gradient-hero.png";
 import sidebarOnlyImage from "../assets/sidebar.jpeg";
 
@@ -151,16 +150,31 @@ const Hero = () => {
 	const borderRadius = useTransform(scrollYProgress, [0, 0.2], [200, 100]);
 	const ovalY = useTransform(scrollYProgress, [0, 0.25], ["0%", "-50%"]);
 
-	// Image crossfade
-	const chartsOpacity = useTransform(scrollYProgress, [0.05, 0.085], [1, 0]);
-	const sidebarImageOpacity = useTransform(
+	// ============ Image Clip-Path Transition ============
+	// Initial: Show center-right (charts area, no sidebar) - clip left 6%
+	// Final: Show left portion (sidebar + content) - clip right 20%
+	// Widened scroll range [0.05, 0.12] for smoother, more linear transition
+	const clipRight = useTransform(scrollYProgress, [0.05, 0.12], [0, 43]);
+	const clipLeft = useTransform(scrollYProgress, [0.05, 0.12], [13, 0]);
+
+	// Centering compensation: translate = (clipRight - clipLeft) / 2
+	// Initial: (0 - 6) / 2 = -3% (shift left to center the right portion)
+	// Final: (20 - 0) / 2 = 10% (shift right to center the left portion)
+	const imageTranslateX = useTransform(
 		scrollYProgress,
-		[0.05, 0.085],
-		[0, 1],
+		[0.05, 0.12],
+		["-6.5%", "22%"],
+	);
+
+	// Vertical position: start with top overflow, animate to normal
+	const imageWrapperY = useTransform(
+		scrollYProgress,
+		[0.05, 0.12],
+		["-20%", "-12%"],
 	);
 
 	// Counter-scale for images
-	const imageCounterScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.9]);
+	const imageCounterScale = useTransform(scrollYProgress, [0, 0.25], [1, 1.4]);
 
 	// ============ PHASE 2: Transition ============
 	const ovalSectionOpacity = useTransform(scrollYProgress, [0.15, 0.2], [1, 0]);
@@ -290,30 +304,42 @@ const Hero = () => {
 										y: ovalY,
 									}}
 								>
-									{/* Charts Image (initial) */}
+									{/* Dashboard Image with Clip-Path Transition */}
 									<motion.div
 										className="absolute inset-0 w-full h-full origin-top"
 										style={{
-											opacity: chartsOpacity,
 											scale: imageCounterScale,
 										}}
 									>
-										<div
-											className="absolute w-[75%] left-1/2 transform -translate-x-1/2 top-0"
+										{/* Wrapper with shadow - drop-shadow respects clipped shape inside */}
+										<motion.div
+											className={`absolute w-[80%] left-1/2 transform -translate-x-1/2 transition-[filter] duration-200 ${isDemoHovered ? "blur-md" : ""}`}
 											style={{
-												filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.3))",
+												y: imageWrapperY,
+												filter: `
+													drop-shadow(0px 4.35px 10.14px rgba(0, 0, 0, 0.39))
+													drop-shadow(0px 18.84px 18.84px rgba(0, 0, 0, 0.33))
+													drop-shadow(0px 42.02px 25.36px rgba(0, 0, 0, 0.2))
+													drop-shadow(0px 74.63px 29.71px rgba(0, 0, 0, 0.06))
+													drop-shadow(0px 116.65px 32.6px rgba(0, 0, 0, 0.01))
+												`,
 											}}
 										>
-											<div
-												className={`transition-all duration-200 ${isDemoHovered ? "blur-sm" : ""}`}
-											>
-												<img
-													src={chartsImage}
-													alt="Dashboard Preview"
-													className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
-												/>
-											</div>
-										</div>
+											{/* Image with clip-path and centering translation */}
+											<motion.img
+												src={dashboardImage}
+												alt="Dashboard Preview"
+												className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
+												style={{
+													x: imageTranslateX,
+													clipPath: useTransform(
+														[clipRight, clipLeft],
+														([right, left]) =>
+															`inset(0% ${right}% 0% ${left}% round 8px)`,
+													),
+												}}
+											/>
+										</motion.div>
 
 										{/* Enter button - appears on hover */}
 										<div
@@ -325,32 +351,6 @@ const Hero = () => {
 											>
 												Enter
 											</button>
-										</div>
-									</motion.div>
-
-									{/* Sidebar + Charts Image */}
-									<motion.div
-										className="absolute inset-0 w-full h-full flex items-start justify-center bg-[#F0F0F0] origin-top"
-										style={{
-											opacity: sidebarImageOpacity,
-											scale: imageCounterScale,
-										}}
-									>
-										<div
-											className="w-[60%]"
-											style={{
-												filter: "drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.3))",
-											}}
-										>
-											<img
-												src={sidebarImage}
-												alt="Dashboard with Sidebar Preview"
-												className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl"
-												style={{
-													transform: "scaleY(0.9)",
-													transformOrigin: "top",
-												}}
-											/>
 										</div>
 									</motion.div>
 								</motion.div>

@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Hexagon } from "lucide-react";
 import dashboardImage from "../assets/dashboard.jpg";
 import backgroundPattern from "../assets/gradient-hero.png";
-import sidebarOnlyImage from "../assets/sidebar.jpeg";
 
 // SVG Tooltip connector component - renders circle + dashed path
 interface TooltipConnectorProps {
@@ -211,6 +210,12 @@ const Hero = () => {
 			`${interpolate(progress, [0.5, 1.0], [0, 1])}`,
 		);
 
+		// Phone frame container - fade in at 0.5
+		style.setProperty(
+			"--phone-frame-opacity",
+			`${interpolate(progress, [0.48, 0.55], [0, 1])}`,
+		);
+
 		// Tooltip clip-path animations - Start after sidebar is visible
 		style.setProperty(
 			"--tooltip1-clip",
@@ -304,6 +309,7 @@ const Hero = () => {
 					"--tooltip4-clip": "100%",
 					"--tooltip5-clip": "100%",
 					"--oval-bg-opacity": "0",
+					"--phone-frame-opacity": "0",
 				} as React.CSSProperties
 			}
 		>
@@ -392,17 +398,147 @@ const Hero = () => {
 											filter: isDemoHovered ? "blur(12px)" : undefined,
 										}}
 									>
+										{/* Counter-scale wrapper for phone frame - to make it normal size despite parent scaling */}
+										<div
+											className="absolute will-change-[opacity]"
+											style={{
+												opacity: "var(--phone-frame-opacity)",
+												// Position to wrap around the clipped image
+												// At progress 0.5: image-x is 44%, clip shows 13% from left
+												left: "calc(var(--image-x) - 0.85%)",
+												top: "-1.7%",
+												// Counter the 4.5x uniform parent scaling
+												transform: "scale(0.222)",
+												transformOrigin: "top left",
+												// Size needs to be 4.5x larger since we're scaling down
+												width: "66%", // 69% * 4.5 = 276%
+												height: "466%", // 104% * 4.5
+											}}
+										>
+											{/* White phone frame container */}
+											<div
+												className="w-full h-full bg-white border-1 border-gray-300 rounded-[50px]"
+												style={{
+													padding: "6.75%", // 1.5% * 4.5
+												}}
+											></div>
+										</div>
+
 										{/* Image with clip-path */}
 										<img
 											src={dashboardImage}
 											alt="Dashboard Preview"
-											className="w-full h-auto rounded-md sm:rounded-lg lg:rounded-xl will-change-[transform,clip-path]"
+											className="relative w-full h-auto rounded-[6px] will-change-[transform,clip-path]"
 											style={{
 												transform: "translateX(var(--image-x))",
 												clipPath:
-													"inset(0% var(--clip-right) 0% var(--clip-left) round 8px)",
+													"inset(0% var(--clip-right) 0% var(--clip-left) round 6px)",
 											}}
 										/>
+
+										{/* Counter-scale wrapper for tooltips - to make them normal size */}
+										<div
+											className="absolute pointer-events-none will-change-[opacity]"
+											style={{
+												opacity: "var(--phone-frame-opacity)",
+												// Counter the 4.5x uniform parent scaling
+												transform: "scale(0.222)",
+												transformOrigin: "top left",
+												left: "0",
+												top: "0",
+												width: "450%", // Scale up to compensate
+												height: "450%",
+											}}
+										>
+											{/* Tooltip 1: Manage everything */}
+											<div
+												className="absolute flex items-center"
+												style={{
+													// Positions scaled up by 4.5x to compensate for counter-scale
+													left: "calc((var(--image-x) + 18%) * 4.5)",
+													top: "67.5%", // 15% * 4.5
+													clipPath: `inset(0 var(--tooltip1-clip) 0 0)`,
+												}}
+											>
+												<TooltipConnector direction="right-1" lineLength={80} />
+												<div className="bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-lg">
+													<p className="text-[10px] font-medium text-gray-500 mb-0">
+														Manage everything
+													</p>
+												</div>
+											</div>
+
+											{/* Tooltip 2: Keep track of important data */}
+											<div
+												className="absolute flex items-center"
+												style={{
+													left: "calc((var(--image-x) + 18%) * 4.5)",
+													top: "135%", // 30% * 4.5
+													clipPath: `inset(0 var(--tooltip2-clip) 0 0)`,
+												}}
+											>
+												<TooltipConnector
+													direction="right-2"
+													lineLength={100}
+												/>
+												<div className="bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-lg">
+													<p className="text-[11px] font-semibold text-gray-900">
+														Keep track of the most important data
+													</p>
+												</div>
+											</div>
+
+											{/* Tooltip 3: Full Stock overview */}
+											<div
+												className="absolute flex items-center"
+												style={{
+													left: "calc((var(--image-x) + 18%) * 4.5)",
+													top: "202.5%", // 45% * 4.5
+													clipPath: `inset(0 var(--tooltip3-clip) 0 0)`,
+												}}
+											>
+												<TooltipConnector direction="right-1" lineLength={90} />
+												<div className="bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-lg">
+													<p className="text-[11px] font-semibold text-gray-900">
+														Full Stock overview
+													</p>
+												</div>
+											</div>
+
+											{/* Tooltip 4: Partners Management */}
+											<div
+												className="absolute flex items-center"
+												style={{
+													left: "calc((var(--image-x) + 18%) * 4.5)",
+													top: "270%", // 60% * 4.5
+													clipPath: `inset(0 var(--tooltip4-clip) 0 0)`,
+												}}
+											>
+												<TooltipConnector direction="right-2" lineLength={80} />
+												<div className="bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-lg">
+													<p className="text-[11px] font-semibold text-gray-900">
+														Partners Management
+													</p>
+												</div>
+											</div>
+
+											{/* Tooltip 5: Analytics */}
+											<div
+												className="absolute flex items-center"
+												style={{
+													left: "calc((var(--image-x) + 18%) * 4.5)",
+													top: "337.5%", // 75% * 4.5
+													clipPath: `inset(0 var(--tooltip5-clip) 0 0)`,
+												}}
+											>
+												<TooltipConnector direction="right-1" lineLength={85} />
+												<div className="bg-white border border-gray-300 rounded-lg px-3 py-1.5 shadow-lg">
+													<p className="text-[11px] font-semibold text-gray-900">
+														Analytics Dashboard
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 
 									{/* Enter button - appears on hover */}

@@ -157,82 +157,80 @@ const Hero = () => {
 		// Use CSS custom properties for GPU-accelerated animations
 		const style = section.style;
 
-		// Phase 1: Oval Expansion (0 -> 0.25)
-		style.setProperty(
-			"--oval-scale-x",
-			String(interpolate(progress, [0, 0.25], [1, 3])),
-		);
-		style.setProperty(
-			"--oval-scale-y",
-			String(interpolate(progress, [0, 0.25], [1, 3.5])),
-		);
+		// Calculate oval scale values
+		const ovalScaleX = interpolate(progress, [0, 0.5], [1, 3]);
+		const ovalScaleY = interpolate(progress, [0, 0.5], [1, 4.5]);
+
+		style.setProperty("--oval-scale-x", String(ovalScaleX));
+		style.setProperty("--oval-scale-y", String(ovalScaleY));
 		style.setProperty(
 			"--oval-border-radius",
-			`${interpolate(progress, [0, 0.2], [200, 100])}px`,
+			`${interpolate(progress, [0, 0.5], [200, 100])}px`,
 		);
 		style.setProperty(
 			"--oval-y",
-			`${interpolate(progress, [0, 0.25], [0, -50])}%`,
+			`${interpolate(progress, [0, 0.5], [0, -50])}%`,
 		);
 
-		// Image clip-path transition (0.05 -> 0.12)
+		// Counter-scale the image to prevent distortion from non-uniform oval scaling
+		style.setProperty("--image-scale-x", String(ovalScaleY / ovalScaleX));
+		style.setProperty("--image-scale-y", String(1));
+		/////////////////////////////////////////////////////////////
+
+		const imageY =
+			progress < 0.1
+				? interpolate(progress, [0, 0.1], [-20, 0])
+				: interpolate(progress, [0.1, 0.5], [0, 40]);
+		style.setProperty("--image-y", `${imageY}%`);
+
 		style.setProperty(
 			"--clip-right",
-			`${interpolate(progress, [0.05, 0.12], [0, 43])}%`,
+			`${interpolate(progress, [0.05, 0.5], [0, 87])}%`,
 		);
 		style.setProperty(
 			"--clip-left",
-			`${interpolate(progress, [0.05, 0.12], [13, 0])}%`,
+			`${interpolate(progress, [0.05, 0.25], [13, 0])}%`,
 		);
-		style.setProperty(
-			"--image-x",
-			`${interpolate(progress, [0.05, 0.12], [-6.5, 22])}%`,
-		);
-		style.setProperty(
-			"--image-y",
-			`${interpolate(progress, [0.05, 0.12], [-20, -12])}%`,
-		);
-		style.setProperty(
-			"--image-scale",
-			String(interpolate(progress, [0, 0.25], [1, 1.6])),
-		);
-
-		// Phase 2: Section transition (0.15 -> 0.2)
+		const imageX =
+			progress < 0.25
+				? interpolate(progress, [0.05, 0.25], [-6.5, 20])
+				: interpolate(progress, [0.25, 0.5], [20, 44]);
+		style.setProperty("--image-x", `${imageX}%`);
 		style.setProperty(
 			"--oval-section-opacity",
-			String(interpolate(progress, [0.2, 0.2], [1, 0])),
+			String(interpolate(progress, [0.5, 0.5], [1, 0])),
 		);
 		style.setProperty(
 			"--sidebar-section-opacity",
-			String(interpolate(progress, [0.2, 0.2], [0, 1])),
+			String(interpolate(progress, [0.5, 0.5], [0, 1])),
 		);
 
-		// Phase 3: Sidebar scroll (0.2 -> 1.0)
+		// Phase 3: Sidebar scroll (0.5 -> 1.0)
 		style.setProperty(
 			"--sidebar-y",
-			`${interpolate(progress, [0.2, 1.0], [0, -150])}vh`,
+			`${interpolate(progress, [0.5, 1.0], [0, -150])}vh`,
 		);
 
-		// Tooltip clip-path animations
+		// Tooltip clip-path animations - Start after sidebar is visible
 		style.setProperty(
 			"--tooltip1-clip",
-			`${interpolate(progress, [0.21, 0.26], [100, 0])}%`,
+			`${interpolate(progress, [0.5, 0.6], [100, 0])}%`,
 		);
 		style.setProperty(
 			"--tooltip2-clip",
-			`${interpolate(progress, [0.25, 0.3], [100, 0])}%`,
+			`${interpolate(progress, [0.55, 0.65], [100, 0])}%`,
 		);
 		style.setProperty(
 			"--tooltip3-clip",
-			`${interpolate(progress, [0.29, 0.34], [100, 0])}%`,
+			`${interpolate(progress, [0.6, 0.65], [100, 0])}%`,
 		);
 		style.setProperty(
 			"--tooltip4-clip",
-			`${interpolate(progress, [0.36, 0.41], [100, 0])}%`,
+			`${interpolate(progress, [0.65, 0.7], [100, 0])}%`,
 		);
 		style.setProperty(
 			"--tooltip5-clip",
-			`${interpolate(progress, [0.65, 0.7], [100, 0])}%`,
+			`${interpolate(progress, [0.7, 0.75], [100, 0])}%`,
 		);
 	}, []);
 
@@ -295,7 +293,8 @@ const Hero = () => {
 					"--clip-left": "13%",
 					"--image-x": "-6.5%",
 					"--image-y": "-20%",
-					"--image-scale": "1",
+					"--image-scale-x": "1",
+					"--image-scale-y": "1",
 					"--oval-section-opacity": "1",
 					"--sidebar-section-opacity": "0",
 					"--sidebar-y": "0vh",
@@ -379,12 +378,13 @@ const Hero = () => {
 								<div
 									className="absolute inset-0 w-full h-full origin-top will-change-transform"
 									style={{
-										transform: "scale(var(--image-scale))",
+										transform:
+											"scaleX(var(--image-scale-x)) scaleY(var(--image-scale-y))",
 									}}
 								>
 									{/* Wrapper with shadow */}
 									<div
-										className="absolute w-[80%] left-1/2 transition-[filter] duration-200 will-change-[transform,filter]"
+										className="absolute w-[85%] left-1/2 transition-[filter] duration-200 will-change-[transform,filter]"
 										style={{
 											transform: "translateX(-50%) translateY(var(--image-y))",
 											filter: isDemoHovered ? "blur(12px)" : undefined,

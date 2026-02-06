@@ -175,12 +175,14 @@ const Hero = () => {
 		// Counter-scale the image to prevent distortion from non-uniform oval scaling
 		style.setProperty("--image-scale-x", String(ovalScaleY / ovalScaleX));
 		style.setProperty("--image-scale-y", String(1));
-		/////////////////////////////////////////////////////////////
 
 		const imageY =
-			progress < 0.1
-				? interpolate(progress, [0, 0.1], [-20, 0])
-				: interpolate(progress, [0.1, 0.5], [0, 40]);
+			progress < 0.15
+				? interpolate(progress, [0, 0.15], [-20, 0])
+				: progress < 0.5
+					? interpolate(progress, [0.15, 0.5], [0, 50])
+					: interpolate(progress, [0.5, 1.0], [50, -50]);
+
 		style.setProperty("--image-y", `${imageY}%`);
 
 		style.setProperty(
@@ -196,19 +198,17 @@ const Hero = () => {
 				? interpolate(progress, [0.05, 0.25], [-6.5, 20])
 				: interpolate(progress, [0.25, 0.5], [20, 44]);
 		style.setProperty("--image-x", `${imageX}%`);
-		style.setProperty(
-			"--oval-section-opacity",
-			String(interpolate(progress, [0.5, 0.5], [1, 0])),
-		);
-		style.setProperty(
-			"--sidebar-section-opacity",
-			String(interpolate(progress, [0.5, 0.5], [0, 1])),
-		);
 
 		// Phase 3: Sidebar scroll (0.5 -> 1.0)
 		style.setProperty(
 			"--sidebar-y",
 			`${interpolate(progress, [0.5, 1.0], [0, -150])}vh`,
+		);
+
+		// Oval background gradient - transition to white from 0.5 to 1.0
+		style.setProperty(
+			"--oval-bg-opacity",
+			`${interpolate(progress, [0.5, 1.0], [0, 1])}`,
 		);
 
 		// Tooltip clip-path animations - Start after sidebar is visible
@@ -303,6 +303,7 @@ const Hero = () => {
 					"--tooltip3-clip": "100%",
 					"--tooltip4-clip": "100%",
 					"--tooltip5-clip": "100%",
+					"--oval-bg-opacity": "0",
 				} as React.CSSProperties
 			}
 		>
@@ -372,6 +373,7 @@ const Hero = () => {
 									transform:
 										"translateY(var(--oval-y)) scaleX(var(--oval-scale-x)) scaleY(var(--oval-scale-y))",
 									borderRadius: "var(--oval-border-radius)",
+									background: `linear-gradient(to bottom, rgba(255, 255, 255, var(--oval-bg-opacity)), rgba(255, 255, 255, var(--oval-bg-opacity))), #F0F0F0`,
 								}}
 							>
 								{/* Dashboard Image with Clip-Path Transition */}
@@ -442,144 +444,6 @@ const Hero = () => {
 							<span className="text-[10px] sm:text-xs lg:text-sm text-black tracking-wider font-medium">
 								SCROLL
 							</span>
-						</div>
-					</div>
-				</div>
-
-				{/* Sidebar Section */}
-				<div
-					className="absolute inset-x-0 w-full h-[300vh] pointer-events-none will-change-[transform,opacity]"
-					style={{
-						opacity: "var(--sidebar-section-opacity)",
-						transform: "translateY(var(--sidebar-y))",
-						top: 0,
-					}}
-				>
-					<div
-						className="absolute inset-0 w-full h-full"
-						style={{
-							background: "linear-gradient(to bottom, #F0F0F0 0%, #FFFFFF 80%)",
-						}}
-					/>
-
-					<div
-						className="absolute left-1/2 -translate-x-1/2 pointer-events-auto"
-						style={{
-							width: "40vw",
-							minWidth: "320px",
-							maxWidth: "500px",
-							top: "10%",
-						}}
-					>
-						<div className="relative">
-							<div className="bg-gray-50 border border-gray-200 rounded-[50px] p-5 sm:p-7.5">
-								<div className="bg-white border border-gray-100 rounded-[40px] overflow-hidden">
-									<img
-										src={sidebarOnlyImage}
-										alt="Sidebar Preview"
-										className="w-full h-auto rounded-[40px]"
-									/>
-								</div>
-							</div>
-
-							{/* Tooltip 1 */}
-							<div
-								className="absolute hidden md:flex flex-col pointer-events-none z-10"
-								style={{
-									top: "16.1%",
-									left: "calc(100% - 35px)",
-									clipPath: "inset(0 var(--tooltip1-clip) 0 0)",
-								}}
-							>
-								<div className="flex items-center">
-									<TooltipConnector direction="right-1" lineLength={220} />
-									<span className="text-[#B3B3B3] font-semibold whitespace-nowrap text-xl lg:text-3xl ml-4">
-										Keep track of the most
-									</span>
-								</div>
-								<span
-									className="text-[#B3B3B3] font-semibold whitespace-nowrap text-xl lg:text-3xl"
-									style={{ marginLeft: "calc(242px + 1rem)" }}
-								>
-									important data
-								</span>
-							</div>
-
-							{/* Tooltip 2 */}
-							<div
-								className="absolute hidden md:flex items-center pointer-events-none z-10"
-								style={{
-									top: "19.8%",
-									right: "calc(100% - 35px)",
-									clipPath: "inset(0 0 0 var(--tooltip2-clip))",
-								}}
-							>
-								<span className="text-[#B3B3B3] font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4">
-									Manage everything
-								</span>
-								<TooltipConnector direction="left" lineLength={120} />
-							</div>
-
-							{/* Tooltip 3 */}
-							<div
-								className="absolute hidden md:flex items-center pointer-events-none z-10"
-								style={{
-									top: "23.5%",
-									left: "calc(100% - 35px)",
-									clipPath: "inset(0 var(--tooltip3-clip) 0 0)",
-								}}
-							>
-								<TooltipConnector direction="right-2" lineLength={140} />
-								<span className="text-[#B3B3B3] font-semibold text-xl lg:text-3xl whitespace-nowrap ml-4">
-									Full stock overview
-								</span>
-							</div>
-
-							{/* Tooltip 4 */}
-							<div
-								className="absolute hidden md:flex items-end pointer-events-none z-10"
-								style={{
-									top: "48%",
-									right: "calc(100% - 78px)",
-									clipPath: "inset(0 0 0 var(--tooltip4-clip))",
-								}}
-							>
-								<span className="text-[#B3B3B3] font-semibold text-xl lg:text-3xl whitespace-nowrap mr-4 -mb-1">
-									Custom dashboard
-								</span>
-								<TooltipConnector
-									direction="down-left"
-									lineLength={200}
-									verticalLength={40}
-								/>
-							</div>
-
-							{/* Tooltip 5 */}
-							<div
-								className="absolute hidden md:flex flex-col pointer-events-none z-10"
-								style={{
-									top: "97.7%",
-									left: "14%",
-									clipPath: "inset(0 var(--tooltip5-clip) 0 0)",
-								}}
-							>
-								<div className="flex items-end">
-									<TooltipConnector
-										direction="down-right"
-										lineLength={200}
-										verticalLength={90}
-									/>
-									<span className="text-[#B3B3B3] font-semibold text-2xl lg:text-4xl whitespace-nowrap ml-4 -mb-1">
-										Manage your
-									</span>
-								</div>
-								<span
-									className="text-[#B3B3B3] font-semibold text-2xl lg:text-4xl whitespace-nowrap"
-									style={{ marginLeft: "calc(222px + 1rem)" }}
-								>
-									account with ease
-								</span>
-							</div>
 						</div>
 					</div>
 				</div>

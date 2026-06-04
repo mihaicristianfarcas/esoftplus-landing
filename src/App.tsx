@@ -6,8 +6,10 @@ import Pricing from "./components/Pricing";
 import FAQ from "./components/FAQ";
 import Team from "./components/Team";
 import Footer from "./components/Footer";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 
 function App() {
+	useSmoothScroll();
 	return (
 		<div className="relative min-h-screen bg-white">
 			{/* <a

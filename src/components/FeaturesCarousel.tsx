@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import DashboardPreviewCard from "./sections/DashboardPreviewCard";
 import FeatureTagCard from "./sections/FeatureTagCard";
 import TrackingCard from "./sections/TrackingCard";
@@ -13,41 +13,9 @@ const FeaturesCarousel = () => {
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 	const stickyRef = useRef<HTMLElement>(null);
 
-	// Store calculated scroll metrics
-	const scrollMetricsRef = useRef({
-		scrollableDistance: 0, // How far the carousel can scroll horizontally
-		initialized: false,
-	});
-
 	// Keyboard navigation state
 	const [activeCardIndex, setActiveCardIndex] = useState(0);
 	const [keyboardMode, setKeyboardMode] = useState(false);
-
-	const calculateMetrics = useCallback(() => {
-		const scrollContainer = scrollContainerRef.current;
-		if (!scrollContainer) return false;
-
-		// Get all card elements
-		const cards = Array.from(scrollContainer.children).filter(
-			(child) => child.getAttribute("data-card") === "true",
-		) as HTMLElement[];
-
-		if (cards.length < 2) return false;
-
-		const firstCard = cards[0];
-		const lastCard = cards[cards.length - 1];
-
-		// The scroll distance is simply how far the last card is from the first card
-		// When we scroll by this amount, the last card will be where the first card started
-		const scrollableDistance = lastCard.offsetLeft - firstCard.offsetLeft;
-
-		scrollMetricsRef.current = {
-			scrollableDistance: Math.max(0, scrollableDistance),
-			initialized: true,
-		};
-
-		return true;
-	}, []);
 
 	useEffect(() => {
 		const container = containerRef.current;
@@ -55,14 +23,21 @@ const FeaturesCarousel = () => {
 		const sticky = stickyRef.current;
 		if (!container || !scrollContainer || !sticky) return;
 
-		// Debounced resize handler
-		let resizeTimeout: ReturnType<typeof setTimeout>;
-		const handleResize = () => {
-			clearTimeout(resizeTimeout);
-			resizeTimeout = setTimeout(() => {
-				scrollMetricsRef.current.initialized = false;
-				calculateMetrics();
-			}, 100);
+		// Get all card elements
+		const cards = Array.from(scrollContainer.children).filter(
+			(child) => child.getAttribute("data-card") === "true",
+		) as HTMLElement[];
+
+		// How far the carousel can scroll horizontally: the distance from the first card
+		// to the last, so at the end the last card sits where the first card started.
+		// Measured on every update rather than cached, because Safari can run this effect
+		// before the stylesheet is applied (cards still stacked, distance 0), and web fonts
+		// change the card widths again once they load.
+		const getScrollableDistance = () => {
+			if (cards.length < 2) return 0;
+			const firstCard = cards[0];
+			const lastCard = cards[cards.length - 1];
+			return Math.max(0, lastCard.offsetLeft - firstCard.offsetLeft);
 		};
 
 		const handleScroll = () => {
@@ -85,19 +60,12 @@ const FeaturesCarousel = () => {
 			// Progress: 0 when sticky section just becomes sticky, 1 when about to unstick
 			const progress = Math.max(0, Math.min(1, -containerTop / scrollRange));
 
-			// Initialize metrics if needed
-			if (!scrollMetricsRef.current.initialized) {
-				calculateMetrics();
-			}
-
-			const { scrollableDistance } = scrollMetricsRef.current;
-
 			// Apply easing for smoother feel (optional - use linear if you prefer)
 			// const easedProgress = easeInOutCubic(progress);
 			const easedProgress = progress; // Linear for predictable behavior
 
 			// Set scroll position
-			scrollContainer.scrollLeft = easedProgress * scrollableDistance;
+			scrollContainer.scrollLeft = easedProgress * getScrollableDistance();
 		};
 
 		// Use requestAnimationFrame for smoother updates
@@ -112,19 +80,23 @@ const FeaturesCarousel = () => {
 			}
 		};
 
+		// Re-apply the position whenever the card layout changes (stylesheet applied,
+		// fonts/images loaded), even if the page hasn't been scrolled since
+		const resizeObserver = new ResizeObserver(onScroll);
+		cards.forEach((card) => resizeObserver.observe(card));
+
 		// Initial setup
-		calculateMetrics();
 		handleScroll();
 
 		window.addEventListener("scroll", onScroll, { passive: true });
-		window.addEventListener("resize", handleResize, { passive: true });
+		window.addEventListener("resize", onScroll, { passive: true });
 
 		return () => {
 			window.removeEventListener("scroll", onScroll);
-			window.removeEventListener("resize", handleResize);
-			clearTimeout(resizeTimeout);
+			window.removeEventListener("resize", onScroll);
+			resizeObserver.disconnect();
 		};
-	}, [calculateMetrics]);
+	}, []);
 
 	// Keyboard navigation handlers
 	const handleCarouselKeyDown = (e: React.KeyboardEvent) => {
